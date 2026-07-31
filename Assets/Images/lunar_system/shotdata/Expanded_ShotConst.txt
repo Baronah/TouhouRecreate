@@ -1,0 +1,396 @@
+local
+{
+	let current = GetCurrentScriptDirectory();
+	let path = current ~ "Expanded_ShotData.txt";
+	LoadEnemyShotData(path);
+}
+
+// ó±íe --------------------------------
+let DS_BALL_SS_RED		= 1;
+let DS_BALL_SS_ORANGE	= 2;
+let DS_BALL_SS_YELLOW	= 3;
+let DS_BALL_SS_GREEN	= 4;
+let DS_BALL_SS_SKY		= 5;
+let DS_BALL_SS_BLUE		= 6;
+let DS_BALL_SS_PURPLE	= 7;
+let DS_BALL_SS_WHITE	= 8;
+
+// è¨íe --------------------------------
+let DS_BALL_S_RED		= 9;
+let DS_BALL_S_ORANGE	= 10;
+let DS_BALL_S_YELLOW	= 11;
+let DS_BALL_S_GREEN		= 12;
+let DS_BALL_S_SKY		= 13;
+let DS_BALL_S_BLUE		= 14;
+let DS_BALL_S_PURPLE	= 15;
+let DS_BALL_S_WHITE		= 16;
+
+// è¨íeÅiâ¡éZçáê¨ï`âÊópÅj --------------
+let DS_BALL_S_A_RED		= 241;
+let DS_BALL_S_A_ORANGE	= 242;
+let DS_BALL_S_A_YELLOW	= 243;
+let DS_BALL_S_A_GREEN	= 244;
+let DS_BALL_S_A_SKY		= 245;
+let DS_BALL_S_A_BLUE	= 246;
+let DS_BALL_S_A_PURPLE	= 247;
+let DS_BALL_S_A_WHITE	= 248;
+
+// ògè¨íe ------------------------------
+let DS_BALL_BS_RED		= 17;
+let DS_BALL_BS_ORANGE	= 18;
+let DS_BALL_BS_YELLOW	= 19;
+let DS_BALL_BS_GREEN	= 20;
+let DS_BALL_BS_SKY		= 21;
+let DS_BALL_BS_BLUE		= 22;
+let DS_BALL_BS_PURPLE	= 23;
+let DS_BALL_BS_WHITE	= 24;
+
+// íÜíe --------------------------------
+let DS_BALL_M_RED		= 25;
+let DS_BALL_M_ORANGE	= 26;
+let DS_BALL_M_YELLOW	= 27;
+let DS_BALL_M_GREEN		= 28;
+let DS_BALL_M_SKY		= 29;
+let DS_BALL_M_BLUE		= 30;
+let DS_BALL_M_PURPLE	= 31;
+let DS_BALL_M_WHITE		= 32;
+
+// íÜíeÅiâ¡éZçáê¨ï`âÊópÅj --------------
+let DS_BALL_M_A_RED		= 225;
+let DS_BALL_M_A_ORANGE	= 226;
+let DS_BALL_M_A_YELLOW	= 227;
+let DS_BALL_M_A_GREEN	= 228;
+let DS_BALL_M_A_SKY		= 229;
+let DS_BALL_M_A_BLUE	= 230;
+let DS_BALL_M_A_PURPLE	= 231;
+let DS_BALL_M_A_WHITE	= 232;
+
+// êjíe --------------------------------
+let DS_NEEDLE_RED		= 33;
+let DS_NEEDLE_ORANGE	= 34;
+let DS_NEEDLE_YELLOW	= 35;
+let DS_NEEDLE_GREEN		= 36;
+let DS_NEEDLE_SKY		= 37;
+let DS_NEEDLE_BLUE		= 38;
+let DS_NEEDLE_PURPLE	= 39;
+let DS_NEEDLE_WHITE		= 40;
+
+// ïƒó±íe ------------------------------
+let DS_RICE_S_RED		= 41;
+let DS_RICE_S_ORANGE	= 42;
+let DS_RICE_S_YELLOW	= 43;
+let DS_RICE_S_GREEN		= 44;
+let DS_RICE_S_SKY		= 45;
+let DS_RICE_S_BLUE		= 46;
+let DS_RICE_S_PURPLE	= 47;
+let DS_RICE_S_WHITE		= 48;
+
+// ïXâÚíe ------------------------------
+let DS_ICE_RED		= 49;
+let DS_ICE_ORANGE	= 50;
+let DS_ICE_YELLOW	= 51;
+let DS_ICE_GREEN	= 52;
+let DS_ICE_SKY		= 53;
+let DS_ICE_BLUE		= 54;
+let DS_ICE_PURPLE	= 55;
+let DS_ICE_WHITE	= 56;
+
+// ç¿ñÚíe ------------------------------
+let DS_MISSILE_RED		= 57;
+let DS_MISSILE_ORANGE	= 58;
+let DS_MISSILE_YELLOW	= 59;
+let DS_MISSILE_GREEN	= 60;
+let DS_MISSILE_SKY		= 61;
+let DS_MISSILE_BLUE		= 62;
+let DS_MISSILE_PURPLE	= 63;
+let DS_MISSILE_WHITE	= 64;
+
+// ëêóöíe ------------------------------
+let DS_RICE_M_RED		= 65;
+let DS_RICE_M_ORANGE	= 66;
+let DS_RICE_M_YELLOW	= 67;
+let DS_RICE_M_GREEN		= 68;
+let DS_RICE_M_SKY		= 69;
+let DS_RICE_M_BLUE		= 70;
+let DS_RICE_M_PURPLE	= 71;
+let DS_RICE_M_WHITE		= 72;
+
+// ãÍñ≥íe ------------------------------
+let DS_KUNAI_RED		= 73;
+let DS_KUNAI_ORANGE		= 74;
+let DS_KUNAI_YELLOW		= 75;
+let DS_KUNAI_GREEN		= 76;
+let DS_KUNAI_SKY		= 77;
+let DS_KUNAI_BLUE		= 78;
+let DS_KUNAI_PURPLE		= 79;
+let DS_KUNAI_WHITE		= 80;
+
+// óÿíe --------------------------------
+let DS_SCALE_RED		= 81;
+let DS_SCALE_ORANGE		= 82;
+let DS_SCALE_YELLOW		= 83;
+let DS_SCALE_GREEN		= 84;
+let DS_SCALE_SKY		= 85;
+let DS_SCALE_BLUE		= 86;
+let DS_SCALE_PURPLE		= 87;
+let DS_SCALE_WHITE		= 88;
+
+// óÿíeÅiâ¡éZçáê¨ï`âÊópÅj --------------
+let DS_SCALE_A_RED		= 233;
+let DS_SCALE_A_ORANGE	= 234;
+let DS_SCALE_A_YELLOW	= 235;
+let DS_SCALE_A_GREEN	= 236;
+let DS_SCALE_A_SKY		= 237;
+let DS_SCALE_A_BLUE		= 238;
+let DS_SCALE_A_PURPLE	= 239;
+let DS_SCALE_A_WHITE	= 240;
+
+// éDíe --------------------------------
+let DS_BILL_RED		= 89;
+let DS_BILL_ORANGE	= 90;
+let DS_BILL_YELLOW	= 91;
+let DS_BILL_GREEN	= 92;
+let DS_BILL_SKY		= 93;
+let DS_BILL_BLUE	= 94;
+let DS_BILL_PURPLE	= 95;
+let DS_BILL_WHITE	= 96;
+
+// ëKíe --------------------------------
+let DS_COIN_RED		= 97;
+let DS_COIN_ORANGE	= 98;
+let DS_COIN_YELLOW	= 99;
+let DS_COIN_GREEN	= 100;
+let DS_COIN_SKY		= 101;
+let DS_COIN_BLUE	= 102;
+let DS_COIN_PURPLE	= 103;
+let DS_COIN_WHITE	= 104;
+
+// í±íe --------------------------------
+let DS_BUTTERFLY_RED		= 105;
+let DS_BUTTERFLY_ORANGE		= 106;
+let DS_BUTTERFLY_YELLOW		= 107;
+let DS_BUTTERFLY_GREEN		= 108;
+let DS_BUTTERFLY_SKY		= 109;
+let DS_BUTTERFLY_BLUE		= 110;
+let DS_BUTTERFLY_PURPLE		= 111;
+let DS_BUTTERFLY_WHITE		= 112;
+
+// åıíe --------------------------------
+let DS_LIGHT_RED		= 113;
+let DS_LIGHT_ORANGE		= 114;
+let DS_LIGHT_YELLOW		= 115;
+let DS_LIGHT_GREEN		= 116;
+let DS_LIGHT_SKY		= 117;
+let DS_LIGHT_BLUE		= 118;
+let DS_LIGHT_PURPLE		= 119;
+let DS_LIGHT_WHITE		= 120;
+
+// è¨êØíe ------------------------------
+let DS_STAR_S_RED		= 121;
+let DS_STAR_S_ORANGE	= 122;
+let DS_STAR_S_YELLOW	= 123;
+let DS_STAR_S_GREEN		= 124;
+let DS_STAR_S_SKY		= 125;
+let DS_STAR_S_BLUE		= 126;
+let DS_STAR_S_PURPLE	= 127;
+let DS_STAR_S_WHITE		= 128;
+
+// ëÂêØíe ------------------------------
+let DS_STAR_M_RED		= 129;
+let DS_STAR_M_ORANGE	= 130;
+let DS_STAR_M_YELLOW	= 131;
+let DS_STAR_M_GREEN		= 132;
+let DS_STAR_M_SKY		= 133;
+let DS_STAR_M_BLUE		= 134;
+let DS_STAR_M_PURPLE	= 135;
+let DS_STAR_M_WHITE		= 136;
+
+// è¨ìÅíe ------------------------------
+let DS_KNIFE_YOUMU_RED		= 137;
+let DS_KNIFE_YOUMU_ORANGE	= 138;
+let DS_KNIFE_YOUMU_YELLOW	= 139;
+let DS_KNIFE_YOUMU_GREEN	= 140;
+let DS_KNIFE_YOUMU_SKY		= 141;
+let DS_KNIFE_YOUMU_BLUE		= 142;
+let DS_KNIFE_YOUMU_PURPLE	= 143;
+let DS_KNIFE_YOUMU_WHITE	= 144;
+
+// ÉiÉCÉtíe ----------------------------
+let DS_KNIFE_KOUMA_RED		= 145;
+let DS_KNIFE_KOUMA_ORANGE	= 146;
+let DS_KNIFE_KOUMA_YELLOW	= 147;
+let DS_KNIFE_KOUMA_GREEN	= 148;
+let DS_KNIFE_KOUMA_SKY		= 149;
+let DS_KNIFE_KOUMA_BLUE		= 150;
+let DS_KNIFE_KOUMA_PURPLE	= 151;
+let DS_KNIFE_KOUMA_WHITE	= 152;
+
+// åıê¸ --------------------------------
+let DS_BEAM_RED			= 153;
+let DS_BEAM_ORANGE		= 154;
+let DS_BEAM_YELLOW		= 155;
+let DS_BEAM_GREEN		= 156;
+let DS_BEAM_SKY			= 157;
+let DS_BEAM_BLUE		= 158;
+let DS_BEAM_PURPLE		= 159;
+let DS_BEAM_WHITE		= 160;
+let DS_BEAM_RAINBOW		= 161;
+
+// âäíe --------------------------------
+let DS_FIRE_RED		= 162;
+let DS_FIRE_BLUE	= 163;
+
+// ë≤ìÉîkíe ----------------------------
+let DS_TABLET	= 164;
+
+// ëÂíe --------------------------------
+let DS_BALL_L_RED		= 165;
+let DS_BALL_L_ORANGE	= 166;
+let DS_BALL_L_YELLOW	= 167;
+let DS_BALL_L_GREEN		= 168;
+let DS_BALL_L_SKY		= 169;
+let DS_BALL_L_BLUE		= 170;
+let DS_BALL_L_PURPLE	= 171;
+let DS_BALL_L_WHITE		= 172;
+
+// îΩì]è¨íe ----------------------------
+let DS_BALL_S_R_WHITE	= 173;
+let DS_BALL_S_R_RED		= 174;
+let DS_BALL_S_R_PURPLE	= 175;
+let DS_BALL_S_R_BLUE	= 176;
+
+// îΩì]ògè¨íe --------------------------
+let DS_BALL_BS_R_WHITE		= 177;
+let DS_BALL_BS_R_RED		= 178;
+let DS_BALL_BS_R_PURPLE		= 179;
+let DS_BALL_BS_R_BLUE		= 180;
+
+// îΩì]íÜíe ----------------------------
+let DS_BALL_M_R_WHITE	= 181;
+let DS_BALL_M_R_RED		= 182;
+let DS_BALL_M_R_PURPLE	= 183;
+let DS_BALL_M_R_BLUE	= 184;
+
+// îΩì]êjíe ----------------------------
+let DS_NEEDLE_R_WHITE	= 185;
+let DS_NEEDLE_R_RED		= 186;
+let DS_NEEDLE_R_PURPLE	= 187;
+let DS_NEEDLE_R_BLUE	= 188;
+
+// îΩì]ïƒó±íe --------------------------
+let DS_RICE_S_R_WHITE	= 189;
+let DS_RICE_S_R_RED		= 190;
+let DS_RICE_S_R_PURPLE	= 191;
+let DS_RICE_S_R_BLUE	= 192;
+
+// îΩì]ïXâÚíe --------------------------
+let DS_ICE_R_WHITE		= 193;
+let DS_ICE_R_RED		= 194;
+let DS_ICE_R_PURPLE		= 195;
+let DS_ICE_R_BLUE		= 196;
+
+// îΩì]ç¿ñÚíe --------------------------
+let DS_MISSILE_R_WHITE		= 197;
+let DS_MISSILE_R_RED		= 198;
+let DS_MISSILE_R_PURPLE		= 199;
+let DS_MISSILE_R_BLUE		= 200;
+
+// îΩì]ëêóöíe --------------------------
+let DS_RICE_M_R_WHITE	= 201;
+let DS_RICE_M_R_RED		= 202;
+let DS_RICE_M_R_PURPLE	= 203;
+let DS_RICE_M_R_BLUE	= 204;
+
+// îΩì]í±íe ----------------------------
+let DS_BUTTERFLY_R_WHITE	= 205;
+let DS_BUTTERFLY_R_RED		= 206;
+let DS_BUTTERFLY_R_PURPLE	= 207;
+let DS_BUTTERFLY_R_BLUE		= 208;
+
+// îΩì]åıíe ----------------------------
+let DS_LIGHT_R_WHITE	= 209;
+let DS_LIGHT_R_RED		= 210;
+let DS_LIGHT_R_PURPLE	= 211;
+let DS_LIGHT_R_BLUE		= 212;
+
+// îΩì]è¨êØíe --------------------------
+let DS_STAR_S_R_WHITE	= 213;
+let DS_STAR_S_R_RED		= 214;
+let DS_STAR_S_R_PURPLE	= 215;
+let DS_STAR_S_R_BLUE	= 216;
+
+// îΩì]ëÂêØíe --------------------------
+let DS_STAR_M_R_WHITE	= 217;
+let DS_STAR_M_R_RED		= 218;
+let DS_STAR_M_R_PURPLE	= 219;
+let DS_STAR_M_R_BLUE	= 220;
+
+// îΩì]åıê¸ ----------------------------
+let DS_BEAM_R_WHITE		= 221;
+let DS_BEAM_R_RED		= 222;
+let DS_BEAM_R_PURPLE	= 223;
+let DS_BEAM_R_BLUE		= 224;
+
+// ìVãÁíe ------------------------------
+let DS_TENGU	= 254;
+
+// íeñãçŸîªíe --------------------------
+let DS_JUDGMENT		= 255;
+
+// "Murasa Drops" ------------------------
+let DS_DROP_RED     	= 256;
+let DS_DROP_ORANGE  	= 257;
+let DS_DROP_YELLOW  	= 258;
+let DS_DROP_GREEN   	= 259;
+let DS_DROP_SKY     	= 260;
+let DS_DROP_BLUE    	= 261;
+let DS_DROP_PURPLE  	= 262;
+let DS_DROP_WHITE   	= 263;
+
+// "Koishi Hearts" ------------------------
+let DS_HEART_RED    	= 264;
+let DS_HEART_PURPLE 	= 265;
+let DS_HEART_SKY    	= 266;
+let DS_HEART_BLUE   	= 267;
+
+// "Medium Glowy Stars" --------------------
+let DS_STAR_G_RED    	= 268;
+let DS_STAR_G_ORANGE 	= 269;
+let DS_STAR_G_YELLOW 	= 270;
+let DS_STAR_G_GREEN  	= 271;
+let DS_STAR_G_SKY    	= 272;
+let DS_STAR_G_BLUE   	= 273;
+let DS_STAR_G_PURPLE 	= 274;
+let DS_STAR_G_WHITE  	= 275;
+
+// "Bright Oval Bullets" --------------------
+let DS_OVAL_RED 		= 276;
+let DS_OVAL_ORANGE 		= 277;
+let DS_OVAL_YELLOW 		= 278;
+let DS_OVAL_GREEN 		= 279;
+let DS_OVAL_SKY 		= 280;
+let DS_OVAL_BLUE 		= 281;
+let DS_OVAL_PURPLE 		= 282;
+let DS_OVAL_WHITE 		= 283;
+
+// "Animated Energy Bullets (ADD)" -----------
+let DS_ENERGY_A_RED 	= 284;
+let DS_ENERGY_A_ORANGE 	= 285;
+let DS_ENERGY_A_YELLOW 	= 286;
+let DS_ENERGY_A_GREEN 	= 287;
+let DS_ENERGY_A_SKY 	= 288;
+let DS_ENERGY_A_BLUE 	= 289;
+let DS_ENERGY_A_PURPLE 	= 290;
+let DS_ENERGY_A_WHITE 	= 291;
+
+// "Animated Energy Bullets (ALPHA)" ----------
+let DS_ENERGY_RED 		= 292;
+let DS_ENERGY_ORANGE 	= 293;
+let DS_ENERGY_YELLOW 	= 294;
+let DS_ENERGY_GREEN 	= 295;
+let DS_ENERGY_BLUE 		= 296;
+let DS_ENERGY_PURPLE 	= 297;
+
+// "Koishi Thorns" ------------------------------
+let DS_THORN_RED 		= 298;
+let DS_THORN_BLUE 		= 299;

@@ -1,0 +1,705 @@
+fileFormatVersion: 2
+guid: f81c88b6c479c394fb7ace09942ec557
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 102
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a072979df682f27499455cbc1f4fd02c
+      internalID: 1868465441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 102
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a8d51498e501154e849473181c32411
+      internalID: 1246143746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 102
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b3a62402fed1824884f09a9ad702052
+      internalID: -1571447217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 102
+        width: 25
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b2ae1aa8b95a84caa985eec0ef5ae4
+      internalID: -1535149452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_4
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 102
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76b12a0dd9814dd419e9a18a7de276d3
+      internalID: -1889178588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_5
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 102
+        width: 27
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e77fb5c26e47677428f837f50fe7e539
+      internalID: 1991487722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_6
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 102
+        width: 27
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853b028029b3fa346b5027a85dd421f2
+      internalID: 694832273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_7
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 102
+        width: 27
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2917a275c4e30e84a8b7fdb8ee3af652
+      internalID: 1598661882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 54
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a5d85eda765434394cd94721746ee1
+      internalID: 412204916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_9
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 54
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8066f0e7b290ff429b6e4a27a78d6a3
+      internalID: -2012095554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_10
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 55
+        width: 24
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcc196fdbcde0c4f9a2a861490c9a9d
+      internalID: 2130709966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_11
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 55
+        width: 24
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94c886474e1ecde429ab6bfaae9ce519
+      internalID: 869778985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 56
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f2cbcaa77f01d409ea4ba809397977
+      internalID: -750106870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_13
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 56
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9003113880599a1439090df7147546ce
+      internalID: 1716104707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_14
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 56
+        width: 28
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47415ffee25762e47ac5feee50eb3621
+      internalID: 172054564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 56
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a4975d4bdc0f9f4ab70574bdaa023a6
+      internalID: 640201969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 6
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f1c54a3fc252214aac3d1b9ad2a3b20
+      internalID: 967572656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_17
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 6
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ad76ee8ab016a41be821a7bb1f8699
+      internalID: -1568568581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_18
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 7
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 822c7b7a70a67c949b1af7e0e92fa77a
+      internalID: -1096142548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_19
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 7
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e8dab819360f641ae5e4e441a44fff
+      internalID: -1960824294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_20
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 8
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c725433d47b81c4aa7e95c4d791aef0
+      internalID: -704633998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_21
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 8
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db05a4827d6ae764b8a378cd3af0f3f7
+      internalID: 1937386490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_22
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 8
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c66e049fa845ec4987675a96c389e91
+      internalID: 269120089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable
+        Characters - Youmu Konpaku 1_23
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 8
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6cd687988ce1ee4eabaded198e461f1
+      internalID: 1242454148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_0: 1868465441
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_1: 1246143746
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_10: 2130709966
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_11: 869778985
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_12: -750106870
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_13: 1716104707
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_14: 172054564
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_15: 640201969
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_16: 967572656
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_17: -1568568581
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_18: -1096142548
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_19: -1960824294
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_2: -1571447217
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_20: -704633998
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_21: 1937386490
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_22: 269120089
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_23: 1242454148
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_3: -1535149452
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_4: -1889178588
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_5: 1991487722
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_6: 694832273
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_7: 1598661882
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_8: 412204916
+      PC _ Computer - Touhou Kaeizuka (Phantasmagoria of Flower View) - Playable Characters - Youmu Konpaku 1_9: -2012095554
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
