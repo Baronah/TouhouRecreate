@@ -2,24 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// "A Starry Night, the City of Light" (星の夜、ひかりの街)
 public class FairySpellcard_3 : SpellcardBase
 {
     private static WaitForSeconds _waitForSeconds1 = new WaitForSeconds(1f);
     [SerializeField] float ShootInterval = 2f;
     private static WaitForSeconds _waitForSecondsInterval;
 
-    float[] ScreenCorners;
 
     protected override void Start()
     {
-        ScreenCorners = new float[]
-        {
-            GameManager._instance.cornerLeftDown.position.x,
-            GameManager._instance.cornerLeftDown.position.y,
-            GameManager._instance.cornerRightUp.position.x,
-            GameManager._instance.cornerRightUp.position.y,
-        };
-
         _waitForSecondsInterval = new WaitForSeconds(ShootInterval);
 
         base.Start();
@@ -30,19 +22,18 @@ public class FairySpellcard_3 : SpellcardBase
         yield return StartCoroutine(InitializeSpellCardPreEffect());
         yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(MoveToCenter());
+        yield return new WaitForSeconds(1f);
 
         float offset = 0;
         int count = 0;
         while (true)
         {
-            yield return _waitForSecondsInterval;
-
             if (count >= 4)
             {
                 yield return new WaitForSeconds(0.5f);
                 for (int i = 0; i < 360; i += 45)
                 {
-                    CreateBigStars(bulletsUse[Random.Range(0, 4)], 45 * i);
+                    CreateBigStars(bulletsUse[Random.Range(0, 4)], i);
                 }
 
                 count = 0;
@@ -60,6 +51,7 @@ public class FairySpellcard_3 : SpellcardBase
             }
 
             offset = (offset + 90) % 360;
+            yield return _waitForSecondsInterval;
         }
     }
 
@@ -102,19 +94,6 @@ public class FairySpellcard_3 : SpellcardBase
         return projectileStar;
     }
 
-
-    bool hasShotOverbound(Vector3 shootPosition)
-    {
-        return
-            shootPosition.x < ScreenCorners[0]
-            ||
-            shootPosition.y < ScreenCorners[1]
-            ||
-            shootPosition.x > ScreenCorners[2]
-            ||
-            shootPosition.y > ScreenCorners[3];
-    }
-
     IEnumerator WaitUntilShootOverbound(DefaultProjectile toTrack)
     {
         yield return new WaitUntil(() => 
@@ -137,33 +116,37 @@ public class FairySpellcard_3 : SpellcardBase
 
     void CreateSmallStars(Vector3 spawnPos, BulletData.BulletType type)
     {
+        float[] shootDatas = GetSpeedAccelerationAndStarCountByType(type);
+        float speed = shootDatas[0],
+              acceleration = shootDatas[1],
+              count = shootDatas[2];
+
         float initAngle = Random.Range(0, 360);
-        for (int i = 0; i < 360; i += 12)
+        int jump = Mathf.RoundToInt(360 / count);
+        for (int i = 0; i < 360; i += jump)
         {
-            CreateSmallStarProjectile(spawnPos, type, (i + initAngle) * Mathf.Deg2Rad);
+            CreateSmallStarProjectile(spawnPos, type, (i + initAngle) * Mathf.Deg2Rad, speed, acceleration);
         }
     }
 
-    float[] GetSpeedAndAccelerationByType(BulletData.BulletType type)
+    float[] GetSpeedAccelerationAndStarCountByType(BulletData.BulletType type)
     {
         float[] result = type switch
         {
-            BulletData.BulletType.STAR_RED => new float[] { 120, 10 },
-            BulletData.BulletType.STAR_CYAN => new float[] { 10, 50 },
-            BulletData.BulletType.STAR_GREEN => new float[] { 50, 30 },
-            _ => new float[] { 20, 70 },
+            BulletData.BulletType.STAR_RED => new float[] { 150, 20, 24 },
+            BulletData.BulletType.STAR_CYAN => new float[] { 10, 50, 40 },
+            BulletData.BulletType.STAR_GREEN => new float[] { 50, 30, 30 },
+            _ => new float[] { 10, 7, 50 },
         };
 
         return result;
     }
 
-    DefaultProjectile CreateSmallStarProjectile(Vector3 spawnPos, BulletData.BulletType type, float angle)
+    DefaultProjectile CreateSmallStarProjectile(Vector3 spawnPos, BulletData.BulletType type, float angle, float speed, float acceleration)
     {
-        float[] speedAndAcceleration = GetSpeedAndAccelerationByType(type);
+        DefaultProjectile star = CreateSimpleProjectile(type, speed, spawnPos);
 
-        DefaultProjectile star = CreateSimpleProjectile(type, speedAndAcceleration[0], spawnPos);
-
-        star.SetAcceleration(speedAndAcceleration[1]);
+        star.SetAcceleration(acceleration);
         star.SetDirection(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)));
         star.SetRotation(starRotation);
         star.InitializeAndShoot();

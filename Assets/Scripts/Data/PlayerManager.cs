@@ -97,7 +97,7 @@ public class PlayerManager : MonoBehaviour
     public Vector3 GetPlayerReadyPosition()
     {
         Vector3 centerDown = (GameManager._instance.cornerLeftDown.position + GameManager._instance.cornerRightDown.position) / 2;
-        return centerDown + Vector3.up * 25f;
+        return centerDown + Vector3.up * 20f;
     }
 
     public void Register(PlayerBase player)
@@ -111,8 +111,14 @@ public class PlayerManager : MonoBehaviour
         {
             CurrentLives--;
             CurrentBooms = BoomsPerLives;
-            Instantiate(PlayerPrefab, GetPlayerRespawnPosition(), Quaternion.identity);
+            StartCoroutine(SpawnPlayer());
         }
+    }
+
+    IEnumerator SpawnPlayer()
+    {
+        yield return new WaitForSeconds(1f);
+        Instantiate(PlayerPrefab, GetPlayerRespawnPosition(), Quaternion.identity);
     }
 
     void SpawnPlayerAtStart()

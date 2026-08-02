@@ -5,15 +5,32 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasGroup))]
 public class SpellcardCutEffect : MonoBehaviour
 {
+    public static SpellcardCutEffect _instance;
+
     [SerializeField] Image CardCasterSprite;
     [SerializeField] GameObject EffectContainer;
     [SerializeField] float holdDuration = 2f, inDuration = 1f, outDuration = 0.5f;
 
     CanvasGroup cg;
+    Vector3 CasterSpritePosition, EffectContainerPostion;
+
+    private void Awake()
+    {
+        if (!_instance)
+        {
+            _instance = this;
+            cg = GetComponent<CanvasGroup>();
+            CasterSpritePosition = CardCasterSprite.transform.localPosition;
+            EffectContainerPostion = EffectContainer.transform.localPosition;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void SetSpriteAndFadeIn(Sprite sprite)
     {
-        cg = GetComponent<CanvasGroup>();
         CardCasterSprite.sprite = sprite;
         IsPlaying = true;
         StartCoroutine(SpellcardEffectCoroutine());
@@ -44,22 +61,12 @@ public class SpellcardCutEffect : MonoBehaviour
         cg.alpha = 1;
     }
 
+    Vector3 MoveVelocity = new Vector3(15, -15);
     IEnumerator SpellcardWarningsMoveInCoroutine()
     {
-        Image[] SpellcardWarnings = EffectContainer.GetComponentsInChildren<Image>();
-        Vector3[] SpellcardWarningVelocity = new Vector3[SpellcardWarnings.Length];
-        for (int i = 0; i < SpellcardWarnings.Length; i++)
-        {
-            float thisVelocity = Random.Range(10, 30);
-            SpellcardWarningVelocity[i] = new Vector3(thisVelocity, -thisVelocity);
-        }
-
         while (true)
         {
-            for (int i = 0; i < SpellcardWarnings.Length; i++)
-            {
-                MoveWarning(SpellcardWarnings[i].transform, SpellcardWarningVelocity[i]);
-            }
+            MoveWarning(EffectContainer.transform, MoveVelocity);
             yield return null;
         }
     }
@@ -123,6 +130,16 @@ public class SpellcardCutEffect : MonoBehaviour
         }
 
         cg.alpha = 0;
-        Destroy(this.gameObject);
+        OnFinish();
+    }
+
+
+    void OnFinish()
+    {
+        IsPlaying = false;
+        StopAllCoroutines();
+        cg.alpha = 0;
+        CardCasterSprite.transform.localPosition = CasterSpritePosition;
+        EffectContainer.transform.localPosition = EffectContainerPostion;
     }
 }

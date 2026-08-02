@@ -102,7 +102,7 @@ public class ProjectileManager : MonoBehaviour
         if (changeSortingOrder) renderer.sortingOrder = SortingOrder;
 
         CircleCollider2D collider = projectile.GetComponent<CircleCollider2D>();
-        collider.radius = renderer.sprite.bounds.extents.magnitude / 4;
+        collider.radius = renderer.sprite.bounds.extents.magnitude / 5;
     }
 
     public DefaultProjectile CreateSimpleProjectile(BulletData.BulletType bulletType, DefaultProjectile.TargetType targetType, float strength, float speed, Vector3 position, float scale = 1.0f)

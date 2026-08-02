@@ -6,11 +6,7 @@ using static SpellcardBase;
 
 public class EnemyBase : MonoBehaviour
 {
-    public static WaitForEndOfFrame _waitForEndOfFrame;
     public static WaitForSeconds _waitForSeconds0_1 = new WaitForSeconds(0.1f);
-    public static WaitForSeconds _waitForSeconds0_5 = new WaitForSeconds(0.5f);
-    public static WaitForSeconds _waitForSeconds5 = new WaitForSeconds(5f);
-    public static WaitForSeconds _waitForSeconds0_25 = new WaitForSeconds(0.25f);
 
     protected SpellcardBase[][] spellcards;
     protected SpellData[][] spellDatas;

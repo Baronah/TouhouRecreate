@@ -20,14 +20,4 @@ public class GameManager : MonoBehaviour
         (cornerLeftDown.position + cornerLeftUp.position + cornerRightDown.position + cornerRightUp.position) / 4;
 
     public static LayerMask EnemyLayer = 8, PlayerLayer = 9, ProjectileEnemyLayer = 6, ProjectilePlayerLayer = 7;
-
-    [SerializeField] GameObject SpellcardEffect;
-    public SpellcardCutEffect InitializeSpellCardEffect(Sprite casterSprite)
-    {
-        GameObject o = Instantiate(SpellcardEffect);
-        SpellcardCutEffect spellcardCutEffect = o.GetComponent<SpellcardCutEffect>();
-        spellcardCutEffect.SetSpriteAndFadeIn(casterSprite);
-
-        return spellcardCutEffect;
-    }
 }

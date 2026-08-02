@@ -7,6 +7,7 @@ using static BulletData;
 using static DefaultProjectile;
 using Random = UnityEngine.Random;
 
+// Star sign "The Stars Descend" (星降る夜の星座)
 public class FairySpellcard_1 : SpellcardBase
 {
     protected override IEnumerator SpellcardShoot()

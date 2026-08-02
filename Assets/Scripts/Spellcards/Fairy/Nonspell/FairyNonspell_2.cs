@@ -17,10 +17,9 @@ public class FairyNonspell_2 : SpellcardBase
 
     IEnumerator CircularDisplacementShoot()
     {
+        yield return new WaitForSeconds(0.5f);
         while (true)
         {
-            yield return _waitForSecondsDisplacement;
-
             float offset = Random.Range(0, 360);
             float addedSpeed = 0;
             for (int i = 0; i < 6; ++i)
@@ -43,6 +42,8 @@ public class FairyNonspell_2 : SpellcardBase
                 addedSpeed -= 10;
                 yield return _waitForSeconds0_25;
             }
+
+            yield return _waitForSecondsDisplacement;
         }
     }
 

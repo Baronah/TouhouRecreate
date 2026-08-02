@@ -2,12 +2,16 @@ using System.Collections;
 using System.Reflection;
 using UnityEngine;
 
+// "Witch's Tears" (魔女の涙)
 public class FairySpellcard_2 : SpellcardBase
 {
-    private static WaitForSeconds _waitForSeconds0_2 = new WaitForSeconds(0.15f);
+    [SerializeField] int projectileCount = 80;
+    [SerializeField] float shootInterval = 0.125f;
+    private static WaitForSeconds _waitForSecondsInterval;
 
     protected override IEnumerator SpellcardShoot()
     {
+        _waitForSecondsInterval = new WaitForSeconds(shootInterval);
         yield return StartCoroutine(InitializeSpellCardPreEffect());
         yield return StartCoroutine(CreateCeilShots());
     }
@@ -18,19 +22,12 @@ public class FairySpellcard_2 : SpellcardBase
         ceilingLeft = GameManager._instance.cornerLeftUp.position;
         ceilingRight = GameManager._instance.cornerRightUp.position;
 
-        int projectileCount = 80;
         float distanceJump = Vector3.Distance(ceilingLeft, ceilingRight) / projectileCount;
 
-        float timeUntilMiddle = 0.125f * projectileCount / 2;
+        float timeUntilMiddle = shootInterval * projectileCount / 2;
 
-        StartCoroutine(CreateSlowFallingShoot(projectileCount, distanceJump));
+        StartCoroutine(CreateFallingShoot(projectileCount, distanceJump));
         yield return new WaitForSeconds(timeUntilMiddle);
-        StartCoroutine(CreateSlowFallingShoot(projectileCount, distanceJump));
-        yield return new WaitForSeconds(timeUntilMiddle / 2);
-        StartCoroutine(CreateFallingShoot(projectileCount, distanceJump));
-        yield return new WaitForSeconds(timeUntilMiddle / 2);
-        StartCoroutine(CreateFallingShoot(projectileCount, distanceJump));
-        yield return new WaitForSeconds(timeUntilMiddle / 2);
         StartCoroutine(CreateFallingShoot(projectileCount, distanceJump));
     }
 
@@ -40,52 +37,51 @@ public class FairySpellcard_2 : SpellcardBase
         {
             for (int i = 0; i < projectileCount; ++i)
             {
-                CreateFallingProjectile(ceilingLeft + distanceJump * i * Vector3.right);
-                CreateFallingProjectile(ceilingRight + distanceJump * i * Vector3.left);
+                CreateFallingProjectileAndTrack(ceilingLeft + distanceJump * i * Vector3.right);
+                CreateFallingProjectileAndTrack(ceilingRight + distanceJump * i * Vector3.left);
 
-                yield return _waitForSeconds0_2;
+                yield return _waitForSecondsInterval;
             }
         }
     }
 
-    IEnumerator CreateSlowFallingShoot(int projectileCount, float distanceJump)
-    {
-        while (true)
-        {
-            for (int i = 0; i < projectileCount; ++i)
-            {
-                CreateSlowFallingProjectile(ceilingLeft + distanceJump * i * Vector3.right);
-                CreateSlowFallingProjectile(ceilingRight + distanceJump * i * Vector3.left);
-
-                yield return _waitForSeconds0_2;
-            }
-        }
-    }
-
-    void CreateSlowFallingProjectile(Vector3 initPos)
+    void CreateFallingUpProjectile(Vector3 initPos)
     {
         DefaultProjectile defaultProjectile = CreateSimpleProjectile(
                 BulletData.BulletType.KUNAI_CYAN,
-                70,
+                5,
                 initPos,
-                scale: 1.3f
+                scale: 1.5f
             );
 
         defaultProjectile.SetAcceleration(30);
-        defaultProjectile.SetDirection(Vector3.down);
+        defaultProjectile.SetDirection(Vector3.up);
         defaultProjectile.InitializeAndShoot();
     }
 
-    void CreateFallingProjectile(Vector3 initPos)
+    void CreateFallingProjectileAndTrack(Vector3 initPos)
     {
         DefaultProjectile defaultProjectile = CreateSimpleProjectile(
                 BulletData.BulletType.KUNAI_DARK_BLUE,
                 Random.Range(30, 200),
-                initPos
+                initPos,
+                scale: 1.25f
             );
 
         defaultProjectile.SetAcceleration(Random.Range(50, 150));
         defaultProjectile.SetDirection(Vector3.down);
         defaultProjectile.InitializeAndShoot();
+
+        StartCoroutine(WaitUntilOverBound(defaultProjectile));
+    }
+
+    IEnumerator WaitUntilOverBound(DefaultProjectile toTrack)
+    {
+        yield return new WaitUntil(() =>
+            hasShotOverbound(toTrack.transform.position) || !toTrack.gameObject.activeSelf
+        );
+
+        CreateFallingUpProjectile(toTrack.transform.position);
+        toTrack.ReturnToPool();
     }
 }

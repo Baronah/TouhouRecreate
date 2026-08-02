@@ -51,7 +51,7 @@ public abstract class PlayerBase : MonoBehaviour
     IEnumerator GetReady()
     {
         Vector3 start = transform.position, final = PlayerManager._instance.GetPlayerReadyPosition();
-        float c = 0, d = 1.25f;
+        float c = 0, d = 0.8f;
         while (c < d)
         {
             transform.position = Vector3.Lerp(start, final, c * 1.0f / d);
