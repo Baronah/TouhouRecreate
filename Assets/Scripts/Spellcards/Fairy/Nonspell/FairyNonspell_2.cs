@@ -5,13 +5,15 @@ using static BulletData;
 
 public class FairyNonspell_2 : SpellcardBase
 {
+    [SerializeField] float interval = 2.1f;
     private static WaitForSeconds _waitForSeconds0_25 = new WaitForSeconds(0.2f);
     private static WaitForSeconds _waitForSecondsForStillProjecileTurnDisplace = new WaitForSeconds(1.9f);
-    private static WaitForSeconds _waitForSecondsDisplacement = new WaitForSeconds(2.5f);
+    private static WaitForSeconds _waitForSecondsDisplacement;
 
-    protected override IEnumerator SpellcardShoot()
+    protected override IEnumerator AttackShoot()
     {
         yield return new WaitForSeconds(1f);
+        _waitForSecondsDisplacement = new WaitForSeconds(interval);
         StartCoroutine(CircularDisplacementShoot());
     }
 
@@ -56,6 +58,7 @@ public class FairyNonspell_2 : SpellcardBase
     List<DefaultProjectile> defaultProjectiles;
     List<DefaultProjectile> CreateInitialDisplacementProjectiles(int count, float offset, float addedSpeed)
     {
+        SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_1);
         defaultProjectiles = new();
         int jump = 360 / count;
 
@@ -87,6 +90,7 @@ public class FairyNonspell_2 : SpellcardBase
 
     void MakeDisplacementProjectile(List<DefaultProjectile> projectiles, float displacement)
     {
+        SoundManager._instance.PlaySound(SfxData.SFXType.REVERSE);
         foreach (var projectile in projectiles)
         {
             ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(

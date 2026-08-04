@@ -21,12 +21,12 @@ public class ProjectileManager : MonoBehaviour
 
     public List<DefaultProjectile> GetProjectilesOfType(BulletType bulletType)
     {
-        return ActiveProjectiles.Where(p => p.GetBulletType == bulletType).ToList();
+        return ActiveProjectiles.Where(p => p.gameObject.activeSelf && p.GetBulletType == bulletType).ToList();
     }
 
     public List<DefaultProjectile> GetProjectilesOfType(BulletType[] bulletTypes)
     {
-        return ActiveProjectiles.Where(p => bulletTypes.Contains(p.GetBulletType)).ToList();
+        return ActiveProjectiles.Where(p => p.gameObject.activeSelf && bulletTypes.Contains(p.GetBulletType)).ToList();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -91,6 +91,7 @@ public class ProjectileManager : MonoBehaviour
 
     public void ChangeBulletTypeOfCurrentProjectile(DefaultProjectile currentProjectile, BulletData.BulletType newBulletType)
     {
+        currentProjectile.SetBulletType(newBulletType);
         SetSpriteAndHitboxSizeOfProjectileByBulletType(newBulletType, currentProjectile, 0, false);
     }
 
@@ -105,6 +106,7 @@ public class ProjectileManager : MonoBehaviour
         collider.radius = renderer.sprite.bounds.extents.magnitude / 5;
     }
 
+    public Vector3 ProjectileBaseScale => ObjectPooling._instance.ProjectileBaseScale;
     public DefaultProjectile CreateSimpleProjectile(BulletData.BulletType bulletType, DefaultProjectile.TargetType targetType, float strength, float speed, Vector3 position, float scale = 1.0f)
     {
         GameObject projectile = ObjectPooling._instance.GetProjectile(bulletType, position, scale);

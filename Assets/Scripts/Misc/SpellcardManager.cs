@@ -1,11 +1,13 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class SpellcardCutEffect : MonoBehaviour
+public class SpellcardManager : MonoBehaviour
 {
-    public static SpellcardCutEffect _instance;
+    public static SpellcardManager _instance;
 
     [SerializeField] Image CardCasterSprite;
     [SerializeField] GameObject EffectContainer;
@@ -13,6 +15,7 @@ public class SpellcardCutEffect : MonoBehaviour
 
     CanvasGroup cg;
     Vector3 CasterSpritePosition, EffectContainerPostion;
+    AudioSource[] audioSources;
 
     private void Awake()
     {
@@ -20,6 +23,7 @@ public class SpellcardCutEffect : MonoBehaviour
         {
             _instance = this;
             cg = GetComponent<CanvasGroup>();
+            audioSources = GetComponents<AudioSource>();
             CasterSpritePosition = CardCasterSprite.transform.localPosition;
             EffectContainerPostion = EffectContainer.transform.localPosition;
         }
@@ -29,17 +33,23 @@ public class SpellcardCutEffect : MonoBehaviour
         }
     }
 
-    public void SetSpriteAndFadeIn(Sprite sprite)
+    public void RegisterSpellcard(SpellcardBase spellcardBase, Sprite sprite)
     {
+        CurrentSpellcard = spellcardBase;
         CardCasterSprite.sprite = sprite;
-        IsPlaying = true;
-        StartCoroutine(SpellcardEffectCoroutine());
+
+        if (spellcardBase.spellType == SpellcardBase.SpellType.SPELLCARD)
+        {
+            IsPlaying = true;
+            StartCoroutine(SpellcardEffectCoroutine());
+        }
     }
 
     public bool IsPlaying = false;
 
     IEnumerator SpellcardEffectCoroutine()
     {
+        audioSources[0].Play();
         IsPlaying = true;
         StartCoroutine(FadeIn());
         StartCoroutine(SpellcardWarningsMoveInCoroutine());
@@ -141,5 +151,55 @@ public class SpellcardCutEffect : MonoBehaviour
         cg.alpha = 0;
         CardCasterSprite.transform.localPosition = CasterSpritePosition;
         EffectContainer.transform.localPosition = EffectContainerPostion;
+    }
+
+    public enum SpellcardFinishType
+    {
+        CAPTURED,
+        FAILED
+    }
+    public void OnSpellcardFinish(SpellcardFinishType spellcardFinishType)
+    {
+        if (spellcardFinishType == SpellcardFinishType.CAPTURED)
+        {
+            audioSources[1].Play();
+        }
+        else if (spellcardFinishType == SpellcardFinishType.FAILED)
+        {
+            audioSources[2].Play();
+        }
+    }
+
+    SpellcardBase CurrentSpellcard = null;
+    public SpellcardBase GetCurrentSpell()
+    {
+        return CurrentSpellcard;
+    }
+    public void MakeSpellcardCaptureInvalid()
+    {
+        if (!CurrentSpellcard) return;
+        CurrentSpellcard.PlayerCheatedThroughSpell();
+    }
+
+    [SerializeField] TMP_Text SpellcardCaptureMessage;
+    public void ShowSpellcardCaptureMessage(int score)
+    {
+        SpellcardCaptureMessage.text =
+            $"<b>Get Spellcard Bonus!</b>\n\n<color=#f1f1f1>+{string.Format($"{score:N0}")}</color>";
+        StartCoroutine(TurnMessageOffAfter(2));
+    }
+
+    public void ShowSpellcardFailMessage()
+    {
+        SpellcardCaptureMessage.text =
+            $"<b><color=#c1c1c1>Bonus Failed!</color></b>";
+        StartCoroutine(TurnMessageOffAfter(1.5f));
+    }
+
+    IEnumerator TurnMessageOffAfter(float c)
+    {
+        SpellcardCaptureMessage.gameObject.SetActive(true);
+        yield return new WaitForSeconds(c);
+        SpellcardCaptureMessage.gameObject.SetActive(false);
     }
 }

@@ -86,7 +86,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject PlayerPrefab;
     private PlayerBase Player;
     public PlayerBase ActivePlayer => Player;
-    public Vector3 PlayerPosition => ActivePlayer ? ActivePlayer.transform.position : Vector3.zero;
+    public Vector3 PlayerPosition => ActivePlayer ? ActivePlayer.transform.position : GameManager._instance.CenterDown;
 
     public Vector3 GetPlayerRespawnPosition()
     {
@@ -107,10 +107,12 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerDeath(PlayerBase player)
     {
+        SpellcardManager._instance.MakeSpellcardCaptureInvalid();
         if (CurrentLives > 0)
         {
             CurrentLives--;
             CurrentBooms = BoomsPerLives;
+            DrawUI();
             StartCoroutine(SpawnPlayer());
         }
     }
@@ -123,6 +125,7 @@ public class PlayerManager : MonoBehaviour
 
     void SpawnPlayerAtStart()
     {
+        DrawUI();
         Instantiate(PlayerPrefab, GetPlayerRespawnPosition(), Quaternion.identity);
     }
 }

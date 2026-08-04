@@ -23,7 +23,9 @@ public abstract class PlayerBase : MonoBehaviour
 
     protected Rigidbody2D rb;
     [SerializeField] GameObject HitboxShow;
+    [SerializeField] GameObject ExplosionSfx;
     [SerializeField] Transform ShootPosition;
+    [SerializeField] SpriteRenderer Sprite;
 
     Animator animator;
 
@@ -43,7 +45,6 @@ public abstract class PlayerBase : MonoBehaviour
         SetInvulnerable(2f);
 
         PlayerManager._instance.Register(this);
-        PlayerManager._instance.DrawUI();
 
         StartCoroutine(GetReady());
     }
@@ -66,7 +67,7 @@ public abstract class PlayerBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isReady) return;
+        if (!isReady || IsDead) return;
 
         UpdateCooldowns();
         SetFocus();
@@ -141,13 +142,53 @@ public abstract class PlayerBase : MonoBehaviour
 
     public virtual void OnProjectileHit(DefaultProjectile projectile)
     {
-        if (!isReady || IsInvulnerable || !gameObject.activeSelf) return;
+        if (!isReady || IsDead || IsInvulnerable || !gameObject.activeSelf) return;
         OnDeath();
     }
 
+    bool IsDead = false;
     public void OnDeath()
     {
+        rb.velocity = Vector2.zero;
+        IsDead = true;
+        HitboxShow.SetActive(false);
         PlayerManager._instance.OnPlayerDeath(this);
+        SoundManager._instance.PlaySound(SfxData.SFXType.PLAYER_EXPLODE, SoundManager.SfxChannel.PLAYER_DEATH);
+        StartCoroutine(Explode());
+        StartCoroutine(PlayerFade());
+    }
+
+    IEnumerator Explode()
+    {
+        GameObject explode = Instantiate(ExplosionSfx, transform);
+        SpriteRenderer explodeSprite = explode.GetComponent<SpriteRenderer>();
+        Color init = explodeSprite.color;
+        Vector3 explodeScaleMax = new(7, 7, 7);
+        Color endColor = new Color(init.r, init.g, init.b, 0);
+        float c = 0, d = 0.5f;
+        while (c < d)
+        {
+            explode.transform.localScale = Vector3.Lerp(explode.transform.localScale, explodeScaleMax, c * 1.0f / d);
+            explodeSprite.color = Color.Lerp(init, endColor, c * 1.0f / d);
+            c += Time.deltaTime;
+            yield return null;
+        }
+
+        explode.transform.localScale = explodeScaleMax;
+        explodeSprite.color = endColor;
+    }
+
+    IEnumerator PlayerFade()
+    {
+        Color endColor = new Color(1, 1, 1, 0);
+        float c = 0, d = 0.7f;
+        while (c < d)
+        {
+            Sprite.color = Color.Lerp(Color.white, endColor, c * 1.0f / d);
+            c += Time.deltaTime;
+            yield return null;
+        }
+
         gameObject.SetActive(false);
         Destroy(this.gameObject, 1f);
     }
@@ -163,6 +204,7 @@ public abstract class PlayerBase : MonoBehaviour
                 position ?? ShootPosition.position
             );
 
+        projectile.MakeSpawnExplosionOnDisappear(false);
         projectile.SetColor(new Color(1, 1, 1, 0.5f));
         projectile.SetAcceleration(acceleration);
         projectile.SetDirection(direction);

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // "A Starry Night, the City of Light" (星の夜、ひかりの街)
@@ -17,9 +16,8 @@ public class FairySpellcard_3 : SpellcardBase
         base.Start();
     }
 
-    protected override IEnumerator SpellcardShoot()
+    protected override IEnumerator AttackShoot()
     {
-        yield return StartCoroutine(InitializeSpellCardPreEffect());
         yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(MoveToCenter());
         yield return new WaitForSeconds(1f);
@@ -30,7 +28,9 @@ public class FairySpellcard_3 : SpellcardBase
         {
             if (count >= 4)
             {
-                yield return new WaitForSeconds(0.5f);
+                SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
+                yield return new WaitForSeconds(1.3f);
+                SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_2, SoundManager.SfxChannel.TRANSFORM);
                 for (int i = 0; i < 360; i += 45)
                 {
                     CreateBigStars(bulletsUse[Random.Range(0, 4)], i);
@@ -42,6 +42,7 @@ public class FairySpellcard_3 : SpellcardBase
             }
             else
             {
+                SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_1, SoundManager.SfxChannel.TRANSFORM);
                 for (int i = 0; i < 4; i++)
                 {
                     CreateBigStars(bulletsUse[i], 90 * i + offset);
@@ -51,7 +52,10 @@ public class FairySpellcard_3 : SpellcardBase
             }
 
             offset = (offset + 90) % 360;
-            yield return _waitForSecondsInterval;
+            if (count >= 4)
+                yield return new WaitForSeconds(ShootInterval - 1f);
+            else
+                yield return _waitForSecondsInterval;
         }
     }
 
@@ -116,6 +120,7 @@ public class FairySpellcard_3 : SpellcardBase
 
     void CreateSmallStars(Vector3 spawnPos, BulletData.BulletType type)
     {
+        SoundManager._instance.PlaySound(SfxData.SFXType.REVERSE, SoundManager.SfxChannel.TRANSFORM);
         float[] shootDatas = GetSpeedAccelerationAndStarCountByType(type);
         float speed = shootDatas[0],
               acceleration = shootDatas[1],
@@ -129,14 +134,18 @@ public class FairySpellcard_3 : SpellcardBase
         }
     }
 
+    float[] shootData_Red = new float[] { 150, 30, 30 }, 
+            shootData_Yellow = new float[] { 100, 30, 36 },
+            shootData_Green = new float[] { 10, 60, 45 },
+            shootData_Cyan = new float[] { 30, 10, 60 };
     float[] GetSpeedAccelerationAndStarCountByType(BulletData.BulletType type)
     {
         float[] result = type switch
         {
-            BulletData.BulletType.STAR_RED => new float[] { 150, 20, 24 },
-            BulletData.BulletType.STAR_CYAN => new float[] { 10, 50, 40 },
-            BulletData.BulletType.STAR_GREEN => new float[] { 50, 30, 30 },
-            _ => new float[] { 10, 7, 50 },
+            BulletData.BulletType.STAR_RED => shootData_Red,
+            BulletData.BulletType.STAR_CYAN => shootData_Cyan,
+            BulletData.BulletType.STAR_GREEN => shootData_Green,
+            _ => shootData_Yellow,
         };
 
         return result;

@@ -10,6 +10,10 @@ public class TintedAdditiveLayer : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
         StartCoroutine(ColorsFade());
     }
 

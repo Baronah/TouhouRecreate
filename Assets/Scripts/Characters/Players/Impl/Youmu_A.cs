@@ -9,6 +9,7 @@ public class Youmu_A : PlayerBase
     {
         if (!CanShoot()) return;
 
+        SoundManager._instance.PlaySound(SfxData.SFXType.PLAYER_SHOOT, SoundManager.SfxChannel.PLAYER);
         if (!focusing) CreateUnfocusedShots();
         else CreateFocusedShot();
     }

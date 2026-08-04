@@ -1,18 +1,16 @@
 using System.Collections;
-using System.Reflection;
 using UnityEngine;
 
-// "Witch's Tears" (魔女の涙)
+// "When You Wish upon the Stars"
 public class FairySpellcard_2 : SpellcardBase
 {
     [SerializeField] int projectileCount = 80;
     [SerializeField] float shootInterval = 0.125f;
     private static WaitForSeconds _waitForSecondsInterval;
 
-    protected override IEnumerator SpellcardShoot()
+    protected override IEnumerator AttackShoot()
     {
         _waitForSecondsInterval = new WaitForSeconds(shootInterval);
-        yield return StartCoroutine(InitializeSpellCardPreEffect());
         yield return StartCoroutine(CreateCeilShots());
     }
 
@@ -37,6 +35,7 @@ public class FairySpellcard_2 : SpellcardBase
         {
             for (int i = 0; i < projectileCount; ++i)
             {
+                SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_1, SoundManager.SfxChannel.SHOOT);
                 CreateFallingProjectileAndTrack(ceilingLeft + distanceJump * i * Vector3.right);
                 CreateFallingProjectileAndTrack(ceilingRight + distanceJump * i * Vector3.left);
 
@@ -45,29 +44,41 @@ public class FairySpellcard_2 : SpellcardBase
         }
     }
 
-    void CreateFallingUpProjectile(Vector3 initPos)
+    BulletData.BulletType[] AllStarsBullets = new BulletData.BulletType[]
     {
-        DefaultProjectile defaultProjectile = CreateSimpleProjectile(
-                BulletData.BulletType.KUNAI_CYAN,
-                5,
-                initPos,
-                scale: 1.5f
-            );
+        BulletData.BulletType.STAR_RED,
+        BulletData.BulletType.STAR_CYAN,
+        BulletData.BulletType.STAR_GREEN,
+        BulletData.BulletType.STAR_MAGENTA,
+        BulletData.BulletType.STAR_BLUE,
+        BulletData.BulletType.STAR_ORANGE
+    };
 
-        defaultProjectile.SetAcceleration(30);
-        defaultProjectile.SetDirection(Vector3.up);
-        defaultProjectile.InitializeAndShoot();
+    Vector3 fallingRotateVector = new(0, 0, 180f);
+    Vector3 risingRotateVector = new(0, 0, -60f);
+
+    void CreateFallingUpProjectile(DefaultProjectile projectile)
+    {
+        SoundManager._instance.PlaySound(SfxData.SFXType.REVERSE, SoundManager.SfxChannel.TRANSFORM);
+
+        ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(projectile, BulletData.BulletType.STAR_GREY);
+        projectile.SetSpeed(5f);
+        projectile.SetRotation(risingRotateVector);
+        projectile.SetAcceleration(30);
+        projectile.SetDirection(Vector3.up);
+        projectile.InitializeAndShoot();
     }
 
     void CreateFallingProjectileAndTrack(Vector3 initPos)
     {
         DefaultProjectile defaultProjectile = CreateSimpleProjectile(
-                BulletData.BulletType.KUNAI_DARK_BLUE,
+                AllStarsBullets[Random.Range(0, AllStarsBullets.Length)],
                 Random.Range(30, 200),
                 initPos,
-                scale: 1.25f
+                scale: 0.85f
             );
 
+        defaultProjectile.SetRotation(fallingRotateVector);
         defaultProjectile.SetAcceleration(Random.Range(50, 150));
         defaultProjectile.SetDirection(Vector3.down);
         defaultProjectile.InitializeAndShoot();
@@ -81,7 +92,6 @@ public class FairySpellcard_2 : SpellcardBase
             hasShotOverbound(toTrack.transform.position) || !toTrack.gameObject.activeSelf
         );
 
-        CreateFallingUpProjectile(toTrack.transform.position);
-        toTrack.ReturnToPool();
+        CreateFallingUpProjectile(toTrack);
     }
 }

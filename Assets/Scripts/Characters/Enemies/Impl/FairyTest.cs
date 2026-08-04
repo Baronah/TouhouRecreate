@@ -8,6 +8,7 @@ using static SpellcardBase;
 
 public class FairyTest : EnemyBase
 {
+    [SerializeField] GameObject MagicCircle;
     [SerializeField] GameObject SpellcardEffect;
 
     protected override void Start()
@@ -16,14 +17,22 @@ public class FairyTest : EnemyBase
         StartShooting();
     }
 
-    BulletType[] GetBulletTypesOfSpell(int index)
+    public override void Update()
     {
-        return getSpellDatas[index].BulletTypes.Distinct().ToArray();
+        base.Update();
+        SpellcardEffect.SetActive(IsUsingSpellcard);
     }
 
-    BulletType[] GetAllBulletTypes()
+    public override void DisableHitbox()
     {
-        return spellDatas[currentLifeIndex].SelectMany(s => s.BulletTypes).Distinct().ToArray();
+        base.DisableHitbox();
+        MagicCircle.SetActive(false);
+    }
+
+    public override void EnableHitbox()
+    {
+        base.EnableHitbox();
+        MagicCircle.SetActive(true);
     }
 
     private void StartShooting()
@@ -41,7 +50,6 @@ public class FairyTest : EnemyBase
             for (int j = 0; j < spellcards[i].Length; ++j)
             {
                 currentSpellcardIndex = j;
-                SpellcardEffect.SetActive(currentActiveSpellcard.spellType == SpellType.SPELLCARD);
                 currentActiveSpellcard.Shoot();
                 yield return new WaitUntil(() => !currentActiveSpellcard.IsShooting);
             }
@@ -53,7 +61,6 @@ public class FairyTest : EnemyBase
     protected override void OnDeath()
     {
         base.OnDeath();
-        ProjectileManager._instance.ClearShootsOfType(GetAllBulletTypes());
         BossHealthBar._instance.SetHUDEmpty();
     }
 }

@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5758541115058966576}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1402685254, guid: dc4cce67d103e674d96ea7ab079460da, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3576dad3ba5824ca8e9bb8799ddaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degreePerSecond: {x: 0, y: 0, z: 25}
+  degreePerSecond: {x: 0, y: 0, z: 35}
 --- !u!1 &3781785089074946589
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +124,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2851021605155506713}
@@ -474,7 +474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 220
-  focusSpeed: 60
+  focusSpeed: 80
   firepower: 4
   HitboxShow: {fileID: 3781785089074946589}
+  ExplosionSfx: {fileID: 8918037335482007505, guid: 1a4bcb7e742f88b4abd13911fe0654e1, type: 3}
   ShootPosition: {fileID: 6877688533367426818}
+  Sprite: {fileID: 8415264237615402784}

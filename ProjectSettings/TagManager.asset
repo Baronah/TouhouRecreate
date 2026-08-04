@@ -46,6 +46,9 @@ TagManager:
   - name: Background
     uniqueID: 2906075037
     locked: 0
+  - name: EffectDown
+    uniqueID: 1461224651
+    locked: 0
   - name: Enemy
     uniqueID: 3135654461
     locked: 0
@@ -54,6 +57,9 @@ TagManager:
     locked: 0
   - name: Projectile
     uniqueID: 2551317331
+    locked: 0
+  - name: EffectUp
+    uniqueID: 3147354425
     locked: 0
   - name: Hitbox
     uniqueID: 1622130745

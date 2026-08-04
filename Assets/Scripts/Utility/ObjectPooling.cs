@@ -10,6 +10,7 @@ public class ObjectPooling : MonoBehaviour
 {
     public static ObjectPooling _instance;
     [SerializeField] private int initSize = 50;
+    [SerializeField] private int expandSize = 50;
     [SerializeField] GameObject ProjectilePrefab;
 
     // Start is called before the first frame update
@@ -33,7 +34,7 @@ public class ObjectPooling : MonoBehaviour
 
     readonly Queue<GameObject> pools = new Queue<GameObject>();
 
-    Vector3 baseScale = new(70f, 70f);
+    public Vector3 ProjectileBaseScale => ProjectilePrefab.transform.localScale;
     public GameObject GetProjectile(BulletData.BulletType bulletType, Vector3 position, float scale = 1.0f)
     {
         GameObject projectile;
@@ -45,9 +46,15 @@ public class ObjectPooling : MonoBehaviour
         else
         {
             projectile = Instantiate(ProjectilePrefab, transform);
+            for (int i = 0; i < expandSize; i++)
+            {
+                GameObject projectileEx = Instantiate(ProjectilePrefab, transform);
+                projectileEx.SetActive(false);
+                pools.Enqueue(projectileEx);
+            }
         }
 
-        projectile.transform.localScale = baseScale * scale;
+        projectile.transform.localScale = ProjectileBaseScale * scale;
         projectile.transform.position = position;
 
         DefaultProjectile projectileScript = projectile.GetComponent<DefaultProjectile>();

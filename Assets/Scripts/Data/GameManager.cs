@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using static SpellcardBase;
 
 [Singleton]
 public class GameManager : MonoBehaviour
@@ -11,13 +14,56 @@ public class GameManager : MonoBehaviour
     public static GameManager _instance;
     private void Awake()
     {
-        if (!_instance) _instance = this;
+        if (!_instance)
+        {
+            _instance = this;
+            Score = 0;
+            HiScore = PlayerPrefs.GetFloat("HighScore", 0);
+            TxtHiScore.text = String.Format("{0:D10}", (int)HiScore);
+        }
         else Destroy(gameObject);
     }
 
     public Transform cornerLeftDown, cornerRightDown, cornerLeftUp, cornerRightUp;
+    
     public Vector3 CenterScreen =>
         (cornerLeftDown.position + cornerLeftUp.position + cornerRightDown.position + cornerRightUp.position) / 4;
 
+    public Vector3 CenterLeft => (cornerLeftDown.position + cornerLeftUp.position) / 2;
+
+    public Vector3 CenterRight => (cornerRightDown.position + cornerRightUp.position) / 2;
+
+    public Vector3 CenterUp => (cornerLeftUp.position + cornerRightUp.position) / 2;
+
+    public Vector3 CenterDown => (cornerLeftDown.position + cornerRightDown.position) / 2;
+
+
     public static LayerMask EnemyLayer = 8, PlayerLayer = 9, ProjectileEnemyLayer = 6, ProjectilePlayerLayer = 7;
+
+    [SerializeField] GameObject NormalBG, SpellcardBG;
+    public void SetBackground(SpellType spellType)
+    {
+        NormalBG.SetActive(spellType == SpellType.NON_SPELL);
+        SpellcardBG.SetActive(spellType == SpellType.SPELLCARD);
+    }
+
+    private float Score = 0;
+    private float HiScore = 0;
+    public float GetScore => Score;
+    public void AddScore(float score)
+    {
+        this.Score += score;
+        TxtScore.text = String.Format("{0:D10}", (int)Score);
+
+        if (Score > HiScore) HiScore = Score;
+        TxtHiScore.text = String.Format("{0:D10}", (int)HiScore);
+    }
+
+    [SerializeField] TMP_Text TxtHiScore, TxtScore;
+
+    [SerializeField] private float NaturalScoreGain = 5_000;
+    private void Update()
+    {
+        AddScore(NaturalScoreGain * Time.deltaTime);
+    }
 }

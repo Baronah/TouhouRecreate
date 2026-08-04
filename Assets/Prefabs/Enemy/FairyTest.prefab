@@ -1,107 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &400291304537169145
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 487378984322490852}
-  - component: {fileID: 7675686589309564852}
-  - component: {fileID: 683146478643892624}
-  - component: {fileID: 1387584437513621114}
-  m_Layer: 8
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &487378984322490852
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400291304537169145}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 2982383760099113650}
-  m_Father: {fileID: 7171222658192464155}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 240, y: 135}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!223 &7675686589309564852
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400291304537169145}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1159312835
-  m_SortingOrder: -1689
-  m_TargetDisplay: 0
---- !u!114 &683146478643892624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400291304537169145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!114 &1387584437513621114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400291304537169145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &921589986963618754
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,11 +33,11 @@ RectTransform:
   m_Children:
   - {fileID: 3490114439096522848}
   - {fileID: 5398357285509890719}
-  m_Father: {fileID: 558632027689159469}
+  m_Father: {fileID: 8029511689056583712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 900, y: 900}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2110274052464869521
@@ -205,6 +103,238 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &1129786431520640199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1193468512764747258}
+  - component: {fileID: 5213722415790792795}
+  - component: {fileID: 9109826331060441898}
+  - component: {fileID: 6974237902664736380}
+  - component: {fileID: 6417568752686760008}
+  - component: {fileID: 8335164496969986657}
+  - component: {fileID: 1774561010814294237}
+  - component: {fileID: 7641604528105924212}
+  m_Layer: 8
+  m_Name: Spellcards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1193468512764747258
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 558632027689159469}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5213722415790792795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7e5563dd613654d967dc9d9a278a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  SpellScore: 2500000
+  SpellTime: 60
+  DamageIntakeRatio: 2
+  Name: 
+  PrepareTime: 1
+  spellType: 0
+  clearType: 0
+  bulletsUse: 2f0000001d000000
+  IsShooting: 0
+  IsPrepared: 0
+  circularShotProjecitleCount: 55
+  StarShotVelocity: 480
+  StarShotAcceleration: -400
+  RedShotVelocity: 20
+  RedShotAcceleration: 20
+  shotInterval: 0.36
+  waitUntilShotChangeColor: 1.3
+--- !u!114 &9109826331060441898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92964964998a6f74abbe15756286a155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 450
+  SpellScore: 2500000
+  SpellTime: 55
+  DamageIntakeRatio: 0.25
+  Name: Star sign "The Stars Descend"
+  PrepareTime: 0
+  spellType: 1
+  clearType: 0
+  bulletsUse: 020000000400000001000000
+  IsShooting: 0
+  IsPrepared: 0
+--- !u!114 &6974237902664736380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f1a58290c3cbf4ab353443a7aba9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  SpellScore: 2500000
+  SpellTime: 60
+  DamageIntakeRatio: 2
+  Name: 
+  PrepareTime: 0.5
+  spellType: 0
+  clearType: 0
+  bulletsUse: 1e00000024000000
+  IsShooting: 0
+  IsPrepared: 0
+  interval: 1.8
+--- !u!114 &6417568752686760008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3be43a61dd30d41b4576a6959283c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 350
+  SpellScore: 2500000
+  SpellTime: 45
+  DamageIntakeRatio: 0.25
+  Name: '"When You Wish upon the Stars"'
+  PrepareTime: 0
+  spellType: 1
+  clearType: 0
+  bulletsUse: 0000000001000000020000000300000004000000050000000600000007000000
+  IsShooting: 0
+  IsPrepared: 0
+  projectileCount: 70
+  shootInterval: 0.165
+--- !u!114 &8335164496969986657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc1d5b79905772448e8e7b9fb6ec18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 2000
+  SpellScore: 2500000
+  SpellTime: 60
+  DamageIntakeRatio: 2.5
+  Name: 
+  PrepareTime: 2
+  spellType: 0
+  clearType: 0
+  bulletsUse: 7701000073010000
+  IsShooting: 0
+  IsPrepared: 0
+  indicator: {fileID: 2217255551751416465, guid: c983c2db667578844aa047186f7ef999, type: 3}
+  intervalRed: 0.5
+  intervalBlue: 0.2
+  Speed: 350
+  Acceleration: 0
+--- !u!114 &1774561010814294237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb2bbe0bfd8fc94dbb130594559683b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 500
+  SpellScore: 3000000
+  SpellTime: 60
+  DamageIntakeRatio: 0.25
+  Name: '"A starry night, the city of Light"'
+  PrepareTime: 0.5
+  spellType: 1
+  clearType: 0
+  bulletsUse: 01000000040000000500000006000000
+  IsShooting: 0
+  IsPrepared: 0
+  ShootInterval: 4
+--- !u!114 &7641604528105924212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec275a170dc880f42a390c5d49d353ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 1
+  SpellScore: 5000000
+  SpellTime: 60
+  DamageIntakeRatio: 0
+  Name: '"Supernova"'
+  PrepareTime: 1.5
+  spellType: 1
+  clearType: 1
+  bulletsUse: 000000000100000004000000050000000600000003000000070000000200000008000000090000000a0000000b00000044000000450000004600000047000000
+  IsShooting: 0
+  IsPrepared: 0
+  intervalStart: 4
+  intervalEnd: 0.8
+  StarCollideIndicator: {fileID: 2217255551751416465, guid: c983c2db667578844aa047186f7ef999, type: 3}
+  displacement: 50
+  OffsetX: 80
+  OffsetY: 100
+  MinYMove: 50
+  starTravelTime: 3.5
+  starTravelMinTime: 2
+  starExplodeSpeedMin: 250
+  starExplodeSpeedMax: 350
+  starExplodeAccelerationMin: 50
+  starExplodeAccelerationMax: 100
 --- !u!1 &1255768562629792802
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +455,7 @@ RectTransform:
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 558632027689159469}
+  m_Father: {fileID: 8029511689056583712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -382,7 +512,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 32767
   m_Sprite: {fileID: 21300000, guid: 140e7882f0de16e4da60dd27d81d1bde, type: 3}
-  m_Color: {r: 0.8867924, g: 0.30619434, b: 0.30619434, a: 0.69803923}
+  m_Color: {r: 0.90943396, g: 0.24537553, b: 0.33089828, a: 0.69803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -404,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3576dad3ba5824ca8e9bb8799ddaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degreePerSecond: {x: 15, y: 15, z: -30}
+  degreePerSecond: {x: 25, y: 25, z: 90}
 --- !u!1 &5015520288711745347
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +647,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1159312835
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2def5005b3b5d104fb544cc8e9a58609, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -541,7 +671,7 @@ GameObject:
   - component: {fileID: 7171222658192464155}
   - component: {fileID: 4374665427681980161}
   m_Layer: 8
-  m_Name: Inner
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,7 +689,6 @@ RectTransform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 487378984322490852}
   - {fileID: 5332699381328753392}
   m_Father: {fileID: 558632027689159469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -580,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cbc7fe7e8ae564089d2ac8a9293a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxOffset: {x: 0, y: 1.2, z: 0}
+  MaxOffset: {x: 0, y: 2, z: 0}
   duration: 2.7
   SpriteTransform: {fileID: 5332699381328753392}
 --- !u!1 &5753199110498234408
@@ -683,11 +812,6 @@ GameObject:
   - component: {fileID: 558632027689159469}
   - component: {fileID: 8330292754293291618}
   - component: {fileID: 5489251542525251450}
-  - component: {fileID: 8674772803932517603}
-  - component: {fileID: 6699115805138145006}
-  - component: {fileID: 4405833822332812079}
-  - component: {fileID: 3691383931914929943}
-  - component: {fileID: 7473381064658694216}
   m_Layer: 8
   m_Name: FairyTest
   m_TagString: Enemy
@@ -707,8 +831,8 @@ RectTransform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5222444681978660263}
-  - {fileID: 2948014834937366665}
+  - {fileID: 1193468512764747258}
+  - {fileID: 8029511689056583712}
   - {fileID: 7171222658192464155}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -732,7 +856,10 @@ MonoBehaviour:
   Name: Mr. Tums
   spriteRenderer: {fileID: 8965266939070309800}
   glowSprite: {fileID: 7155732047378377599}
-  spellsSplit: 020000000200000001000000
+  hitbox: {fileID: 5489251542525251450}
+  spellsSplit: 020000000200000003000000
+  IsUsingSpellcard: 0
+  MagicCircle: {fileID: 4929569567079744476}
   SpellcardEffect: {fileID: 921589986963618754}
 --- !u!61 &5489251542525251450
 BoxCollider2D:
@@ -779,110 +906,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.515572, y: 10.96006}
   m_EdgeRadius: 0
---- !u!114 &8674772803932517603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915037995982736960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7e5563dd613654d967dc9d9a278a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 2000
-  DamageIntakeRatio: 2
-  Name: 
-  spellType: 0
-  clearType: 0
-  bulletsUse: 030000001d000000
-  IsShooting: 0
-  circularShotProjecitleCount: 50
-  StarShotVelocity: 480
-  StarShotAcceleration: -400
-  RedShotVelocity: 20
-  RedShotAcceleration: 20
-  shotInterval: 0.6
-  waitUntilShotChangeColor: 1.8
---- !u!114 &6699115805138145006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915037995982736960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92964964998a6f74abbe15756286a155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 400
-  DamageIntakeRatio: 0.27
-  Name: Star sign "The Stars Descend"
-  spellType: 1
-  clearType: 0
-  bulletsUse: 020000000400000001000000
-  IsShooting: 0
---- !u!114 &4405833822332812079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915037995982736960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f1a58290c3cbf4ab353443a7aba9f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 2000
-  DamageIntakeRatio: 2
-  Name: 
-  spellType: 0
-  clearType: 0
-  bulletsUse: 1e00000024000000
-  IsShooting: 0
---- !u!114 &3691383931914929943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915037995982736960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3be43a61dd30d41b4576a6959283c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 350
-  DamageIntakeRatio: 0.25
-  Name: Witch's Tears
-  spellType: 1
-  clearType: 0
-  bulletsUse: 3c00000039000000
-  IsShooting: 0
---- !u!114 &7473381064658694216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5915037995982736960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb2bbe0bfd8fc94dbb130594559683b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 500
-  DamageIntakeRatio: 0.3
-  Name: '"A starry night, the city of Light"'
-  spellType: 1
-  clearType: 0
-  bulletsUse: 01000000040000000500000006000000
-  IsShooting: 0
-  ShootInterval: 3
---- !u!1 &7261637743136564308
+--- !u!1 &6401464517090426798
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -890,73 +914,35 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2982383760099113650}
-  - component: {fileID: 3217811771070889157}
-  - component: {fileID: 7342955061696811229}
+  - component: {fileID: 8029511689056583712}
   m_Layer: 8
-  m_Name: Glow
+  m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2982383760099113650
+--- !u!224 &8029511689056583712
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7261637743136564308}
+  m_GameObject: {fileID: 6401464517090426798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 487378984322490852}
+  m_Children:
+  - {fileID: 5222444681978660263}
+  - {fileID: 2948014834937366665}
+  m_Father: {fileID: 558632027689159469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1.2}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1800, y: 1800}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3217811771070889157
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7261637743136564308}
-  m_CullTransparentMesh: 1
---- !u!114 &7342955061696811229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7261637743136564308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.65882355, g: 0.5298832, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8083894347041416400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1018,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1159312835
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2def5005b3b5d104fb544cc8e9a58609, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}

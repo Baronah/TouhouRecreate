@@ -10,33 +10,36 @@ using Random = UnityEngine.Random;
 // Star sign "The Stars Descend" (星降る夜の星座)
 public class FairySpellcard_1 : SpellcardBase
 {
-    protected override IEnumerator SpellcardShoot()
+    protected override IEnumerator AttackShoot()
     {
-        yield return StartCoroutine(InitializeSpellCardPreEffect());
-
         yield return new WaitForSeconds(1f);
-        StartCoroutine(BoWaP(1.25f, bulletsUse[0], 250f, -90f, SpeedExhaustType.STAY_STILL));
-        StartCoroutine(BoWaP(1.25f, bulletsUse[0], 250f, -115f, SpeedExhaustType.STAY_STILL));
-        StartCoroutine(BoWaP(1.25f, bulletsUse[0], 250f, -160f, SpeedExhaustType.STAY_STILL));
-        StartCoroutine(BoWaP(1.25f, bulletsUse[0], 250f, -240f, SpeedExhaustType.STAY_STILL));
+        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -90f, SpeedExhaustType.STAY_STILL, false));
+        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -115f, SpeedExhaustType.STAY_STILL, false));
+        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -160f, SpeedExhaustType.STAY_STILL, false));
+        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -240f, SpeedExhaustType.STAY_STILL, false));
+        yield return new WaitForSeconds(3.5f);
 
+        bool reversed = false;
         while (true)
         {
-            yield return new WaitForSeconds(3.5f);
-
-            yield return StartCoroutine(BoWaP(3f, bulletsUse[1], 150f, 25f, SpeedExhaustType.CONTINUE));
+            yield return StartCoroutine(BoWaP(3.6f, bulletsUse[1], 150f, 25f, SpeedExhaustType.STAY_STILL, reversed));
+            SoundManager._instance.PlaySound(SfxData.SFXType.SHATTER_1, SoundManager.SfxChannel.EFFECT);
+            yield return new WaitForSeconds(0.1f);
 
             StopAllBullets();
+            yield return new WaitForSeconds(1f);
 
+            SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
             yield return new WaitForSeconds(1.5f);
-            ChangeShots(bulletsUse[1]);
+            ChangeShotsVelocityOfCachedProjectile();
 
-            yield return new WaitForSeconds(10f);
+            reversed = !reversed;
+            yield return new WaitForSeconds(9f);
         }
     }
 
     private static WaitForSeconds _waitForSeconds0_05 = new WaitForSeconds(0.05f);
-    IEnumerator BoWaP(float duration, BulletType bulletType, float speed, float acceleration, SpeedExhaustType exhaustType)
+    IEnumerator BoWaP(float duration, BulletType bulletType, float speed, float acceleration, SpeedExhaustType exhaustType, bool reversed)
     {
         float countUp = 0;
         float initialAngle = Random.Range(0f, 360f);
@@ -45,30 +48,31 @@ public class FairySpellcard_1 : SpellcardBase
         {
             for (int i = 0; i < 360; i += 6)
             {
-                CreateWaveShots(i + initialAngle + loopcount * 2, bulletType, speed, acceleration, exhaustType);
+                SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_1);
+                CreateWaveShots(i + initialAngle + loopcount * 2, bulletType, speed, acceleration, exhaustType, reversed);
                 countUp += 0.05f;
                 yield return _waitForSeconds0_05;
 
-                if (countUp >= duration) break;
+                if (countUp >= duration) yield break;
             }
 
             loopcount++;
         }
     }
 
-    void CreateWaveShots(float degree, BulletData.BulletType bulletType, float speed, float acceleration, SpeedExhaustType exhaustType)
+    void CreateWaveShots(float degree, BulletData.BulletType bulletType, float speed, float acceleration, SpeedExhaustType exhaustType, bool reversed)
     {
         for (int i = 0; i < 360; i += 40)
         {
             float angle = (degree + i) * Mathf.Deg2Rad;
-            CreateWaveShotsAtAngle(angle, bulletType, speed, acceleration, exhaustType);
+            CreateWaveShotsAtAngle(angle, bulletType, speed, acceleration, exhaustType, reversed);
         }
     }
 
     Vector3 waveRotation = new(0, 0, -180f);
-    void CreateWaveShotsAtAngle(float angle, BulletData.BulletType bulletType, float speed, float acceleration, SpeedExhaustType speedExhaustType)
+    void CreateWaveShotsAtAngle(float angle, BulletData.BulletType bulletType, float speed, float acceleration, SpeedExhaustType speedExhaustType, bool reversed)
     {
-        Vector3 direction = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle), 0f);
+        Vector3 direction = reversed ? new Vector3(Mathf.Sin(angle), Mathf.Cos(angle))  : new Vector3(Mathf.Cos(angle), Mathf.Sin(angle));
         DefaultProjectile projectile = CreateSimpleProjectile(
             bulletType,
             speed,
@@ -85,20 +89,25 @@ public class FairySpellcard_1 : SpellcardBase
     void StopAllBullets()
     {
         projectilesCache =
-            ProjectileManager._instance.GetProjectilesOfType(bulletsUse).Where(b => b.gameObject.activeSelf).ToList();
+                ProjectileManager._instance.GetProjectilesOfType(bulletsUse[1]).ToList();
 
-        foreach (DefaultProjectile shoot in projectilesCache) shoot.Stop();
+        foreach (DefaultProjectile shoot in projectilesCache)
+        {
+            ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(shoot, bulletsUse[2]);
+            shoot.SetAcceleration(-350f);
+            shoot.InitializeAndShoot();
+        }
     }
 
-    void ChangeShots(BulletType type)
+    void ChangeShotsVelocityOfCachedProjectile()
     {
-        projectilesCache = ProjectileManager._instance.GetProjectilesOfType(type).Where(b => b.gameObject.activeSelf).ToList();
+        projectilesCache =
+                ProjectileManager._instance.GetProjectilesOfType(bulletsUse[2]).ToList();
+        SoundManager._instance.PlaySound(SfxData.SFXType.REVERSE, SoundManager.SfxChannel.EFFECT);
         float downAngle = Mathf.Atan2(Vector3.down.y, Vector3.down.x); 
         
         foreach (DefaultProjectile shoot in projectilesCache)
         {
-            ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(shoot, BulletType.STAR_RED);
-
             shoot.SetRotation(waveRotation * -1.5f);
             shoot.SetDirection(new Vector3(Mathf.Cos(downAngle), Mathf.Sin(downAngle)));
             shoot.SetSpeed(5);

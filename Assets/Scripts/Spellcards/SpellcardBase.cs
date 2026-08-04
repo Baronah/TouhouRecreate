@@ -11,8 +11,21 @@ public abstract class SpellcardBase : MonoBehaviour
     protected static WaitForSeconds _waitForSeconds10 = new WaitForSeconds(10f);
 
     [SerializeField] protected float Health = 500;
+    
+    [SerializeField] protected float SpellScore = 2_500_000;
+    float MinScore;
+    float ScoreDrainPerSec;
+
+    [SerializeField] protected float SpellTime = 40f;
+    public float GetSpellTime => SpellTime;
+
     [SerializeField] [Range(0, 10f)] protected float DamageIntakeRatio = 1f;
+    
+    // Only spellcard will display its name to the HUD
     [SerializeField] protected string Name;
+    
+    // Time it takes before the spell starts shooting
+    [SerializeField] protected float PrepareTime = 1.5f;
 
     public struct SpellData
     {
@@ -54,11 +67,39 @@ public abstract class SpellcardBase : MonoBehaviour
     [SerializeField] protected BulletData.BulletType[] bulletsUse;
 
     public Vector3 PlayerPosition => PlayerManager._instance.PlayerPosition;
+    public Vector3 GetDirectionToPlayer(Vector3 currentPos)
+    {
+        return GetDirectionToPoint(currentPos, PlayerPosition);
+    }
+
+    public Vector3 GetDirectionToPoint(Vector3 currentPos, Vector3 toPos)
+    {
+        return (toPos - currentPos).normalized;
+    }
+
+    public enum AngleType
+    {
+        DEGREE,
+        RADIAN,
+    }
+    public float GetAngleToPlayer(Vector3 currentPos, AngleType angleType)
+    {
+        return GetAngleToPoint(currentPos, PlayerPosition, angleType);
+    }
+
+    public float GetAngleToPoint(Vector3 from, Vector3 to, AngleType angleType)
+    {
+        Vector3 direction = GetDirectionToPoint(from, to);
+        float rad = Mathf.Atan2(direction.y, direction.x);
+        return angleType == AngleType.RADIAN ? rad : rad * Mathf.Rad2Deg;
+    }
 
     [HideInInspector] public bool IsShooting = false;
 
     protected virtual void Start()
     {
+        MinScore = SpellScore * 0.25f;
+        ScoreDrainPerSec = (SpellScore - MinScore) / SpellTime;
         spellOwner = GetComponentInParent<EnemyBase>();
         ScreenCorners = new float[]
         {
@@ -72,36 +113,133 @@ public abstract class SpellcardBase : MonoBehaviour
     [HideInInspector] public bool IsPrepared = false;
     public void Shoot() 
     {
-        StartCoroutine(SpellcardPrepare());
+        StartCoroutine(AttackPrepare());
         IsShooting = true;
     }
 
-    IEnumerator SpellcardPrepare()
+    IEnumerator AttackPrepare()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(PrepareTime);
         IsPrepared = true;
         BossHealthBar._instance.SetSpellName(GetData());
-        StartCoroutine(SpellcardShoot());
+        GameManager._instance.SetBackground(spellType);
+        
+        if (spellType == SpellType.SPELLCARD)
+        {
+            spellOwner.IsUsingSpellcard = true;
+        }
+
+        if (clearType == SpellClearType.SURVIVAL) spellOwner.DisableHitbox();
+        yield return InitializeSpellCard();
+        StartCoroutine(AttackShoot());
     }
 
-    protected abstract IEnumerator SpellcardShoot();
-
-    protected virtual IEnumerator InitializeSpellCardPreEffect()
+    private void Update()
     {
-        SpellcardCutEffect._instance.SetSpriteAndFadeIn(spellOwner.getIcon);
-        while (SpellcardCutEffect._instance.IsPlaying)
+        if (IsShooting && IsPrepared)
+        {
+            if (clearType != SpellClearType.SURVIVAL)
+            {
+                SpellScore -= ScoreDrainPerSec * Time.deltaTime;
+                if (SpellScore < MinScore) SpellScore = MinScore;
+            }
+            SpellTime -= Time.deltaTime;
+            if (SpellTime < 0)
+            {
+                OnAttackFinish();
+            }
+        }
+    }
+
+    protected abstract IEnumerator AttackShoot();
+
+    protected virtual IEnumerator InitializeSpellCard()
+    {
+        SpellcardManager._instance.RegisterSpellcard(this, spellOwner.getIcon);
+        while (SpellcardManager._instance.IsPlaying)
         {
             spellOwner.MakeInvulnerable(Time.deltaTime + 0.1f);
             yield return null;
         }
     }
 
-    public void OnSpellCardFinish()
+    public virtual void OnAttackFinish()
     {
         StopAllCoroutines();
         ProjectileManager._instance.ClearShootsOfType(bulletsUse);
+        spellOwner.SetCurrentSpellHealth(0f);
+
+        if (spellType == SpellType.SPELLCARD)
+        {
+            SetSpellCardStatus();
+            if (clearType == SpellClearType.SURVIVAL) spellOwner.EnableHitbox();
+        }
+
+        SpellTime = 0f;
         this.enabled = false;
         IsShooting = false;
+
+        BossHealthBar._instance.UpdateSpellTimer(this);
+        SoundManager._instance.PlaySound(SfxData.SFXType.ENEMY_VANISH, SoundManager.SfxChannel.EFFECT);
+    }
+
+    void SetSpellCardStatus()
+    {
+        bool isDefeated = spellOwner.getCurrentSpellHealth <= 0;
+        bool isTimedOut = SpellTime <= 0 && !isDefeated;
+        SpellcardManager.SpellcardFinishType finishType;
+        if (SpellCaptureIsInvalid)
+        {
+            finishType = SpellcardManager.SpellcardFinishType.FAILED;
+        }
+        else if (isDefeated)
+        {
+            finishType = SpellcardManager.SpellcardFinishType.CAPTURED;
+        }
+        else if (isTimedOut)
+        {
+            finishType = clearType == SpellClearType.SURVIVAL 
+                ? SpellcardManager.SpellcardFinishType.CAPTURED 
+                : SpellcardManager.SpellcardFinishType.FAILED;
+        }
+        else
+        {
+            finishType = SpellcardManager.SpellcardFinishType.FAILED;
+        }
+        OnSpellCardClear(finishType);
+    }
+
+    bool SpellCaptureIsInvalid = false;
+    public void PlayerCheatedThroughSpell()
+    {
+        SpellCaptureIsInvalid = true;
+    }
+
+    public void OnSpellCardClear(SpellcardManager.SpellcardFinishType spellcardFinishType)
+    {
+        spellOwner.IsUsingSpellcard = false;
+        GameManager._instance.SetBackground(SpellType.NON_SPELL);
+        if (spellcardFinishType == SpellcardManager.SpellcardFinishType.CAPTURED)
+        {
+            OnSpellCardCapture();
+        }
+        else if (spellcardFinishType == SpellcardManager.SpellcardFinishType.FAILED)
+        {
+            OnSpellCardFailed();
+        }
+    }
+
+    public void OnSpellCardFailed()
+    {
+        SpellcardManager._instance.ShowSpellcardFailMessage();
+        SpellcardManager._instance.OnSpellcardFinish(SpellcardManager.SpellcardFinishType.FAILED);
+    }
+
+    public void OnSpellCardCapture()
+    {
+        GameManager._instance.AddScore(SpellScore);
+        SpellcardManager._instance.ShowSpellcardCaptureMessage((int) SpellScore);
+        SpellcardManager._instance.OnSpellcardFinish(SpellcardManager.SpellcardFinishType.CAPTURED);
     }
 
     public float GetSpellCardDamage(float damageIn)

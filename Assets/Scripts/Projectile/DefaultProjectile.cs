@@ -31,6 +31,7 @@ public class DefaultProjectile : MonoBehaviour
     private SpeedExhaustType speedExhaustType = SpeedExhaustType.CONTINUE;
 
     BulletType bulletType;
+    public void SetBulletType(BulletType bulletType) => this.bulletType = bulletType;
     public BulletType GetBulletType => bulletType;
 
     SpriteRenderer spriteRenderer;
@@ -119,6 +120,11 @@ public class DefaultProjectile : MonoBehaviour
         this.speedExhaustType = speedExhaustType;
     }
 
+    public void SetScale(float scale)
+    {
+        transform.localScale = ProjectileManager._instance.ProjectileBaseScale * scale;
+    }
+
     float spiralDamping = 0.5f;
     void UpdateDirection()
     {
@@ -183,12 +189,18 @@ public class DefaultProjectile : MonoBehaviour
         }
     }
 
+    bool spawnExplosionOnReturn = true;
+    public void MakeSpawnExplosionOnDisappear(bool value) => spawnExplosionOnReturn = value;
+
     public void ReturnToPool()
     {
         if (!gameObject.activeSelf || !initialized) return;
         initialized = false;
         ResetProperties();
+        if (spawnExplosionOnReturn) 
+            BulletBreakObjectPooling._instance.CreateExplosionAt(transform.position, transform.localScale.x / ProjectileManager._instance.ProjectileBaseScale.x);
         targetType = TargetType.NONE;
+        spawnExplosionOnReturn = true;
         ObjectPooling._instance.ReturnProjectile(this);
     }
 
@@ -203,6 +215,7 @@ public class DefaultProjectile : MonoBehaviour
         if (targetType == TargetType.ENEMY && collision.CompareTag("Enemy"))
         {
             collision.GetComponent<EnemyBase>().OnProjectileHit(this);
+            spawnExplosionOnReturn = false;
             ReturnToPool();
         }
         else if (targetType == TargetType.PLAYER && collision.CompareTag("Player"))

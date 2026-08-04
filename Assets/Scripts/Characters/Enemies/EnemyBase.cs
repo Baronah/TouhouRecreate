@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using static BulletData;
 using static SpellcardBase;
 
 public class EnemyBase : MonoBehaviour
@@ -19,6 +21,10 @@ public class EnemyBase : MonoBehaviour
     
     public float[] getMaxHealth => mHealth[currentLifeIndex];
     public float[] getHealth => health[currentLifeIndex];
+    public float getCurrentSpellHealth => health[currentLifeIndex][currentSpellcardIndex];
+    public void SetCurrentSpellHealth(float value) => health[currentLifeIndex][currentSpellcardIndex] = value;
+
+    public bool IsAlive => health.Any(h => h.Any(hh => hh > 0));
 
     public int getRemainingLives => mHealth.Length - 1 - currentLifeIndex;
 
@@ -29,6 +35,7 @@ public class EnemyBase : MonoBehaviour
 
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected SpriteRenderer glowSprite;
+    [SerializeField] protected Collider2D hitbox;
     protected virtual void Start() 
     { 
         if (!spriteRenderer) spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
@@ -36,8 +43,27 @@ public class EnemyBase : MonoBehaviour
 
         if (!glowSprite) glowSprite = transform.Find("GlowSprite").GetComponent<SpriteRenderer>();
 
+        if (!hitbox) hitbox = GetComponent<Collider2D>();
+
         InitializeArrays();
         GetSpellcardsData();
+    }
+
+    public virtual void Update()
+    {
+
+    }
+
+    public virtual void DisableHitbox()
+    {
+        spriteRenderer.color = new Color(1,1,1,0.25f);
+        hitbox.enabled = false;
+    }
+
+    public virtual void EnableHitbox()
+    {
+        spriteRenderer.color = Color.white;
+        hitbox.enabled = true;
     }
 
     Sprite Icon;
@@ -45,6 +71,8 @@ public class EnemyBase : MonoBehaviour
 
     [SerializeField] int[] spellsSplit;
     public int[] getSpellSplits => spellsSplit;
+
+    public bool IsUsingSpellcard = false;
 
     private void InitializeArrays()
     {
@@ -90,7 +118,7 @@ public class EnemyBase : MonoBehaviour
         float damage = currentActiveSpellcard.GetSpellCardDamage(projectile.GetDamage);
         health[currentLifeIndex][currentSpellcardIndex] -= damage;
         if (damage > 0) OnDamageTake();
-        if (health[currentLifeIndex][currentSpellcardIndex] <= 0) currentActiveSpellcard.OnSpellCardFinish();
+        if (health[currentLifeIndex][currentSpellcardIndex] <= 0) currentActiveSpellcard.OnAttackFinish();
     }
 
     void OnDamageTake()
@@ -114,6 +142,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void OnDeath()
     {
         gameObject.SetActive(false);
+        ProjectileManager._instance.ClearShootsOfType(GetAllBulletTypes());
     }
 
 
@@ -127,5 +156,15 @@ public class EnemyBase : MonoBehaviour
     private void FixedUpdate()
     {
         if (InvulnerableTimer > 0) InvulnerableTimer -= Time.fixedDeltaTime;
+    }
+
+    public BulletType[] GetBulletTypesOfSpell(int index)
+    {
+        return getSpellDatas[index].BulletTypes.Distinct().ToArray();
+    }
+
+    public BulletType[] GetAllBulletTypes()
+    {
+        return spellDatas[currentLifeIndex].SelectMany(s => s.BulletTypes).Distinct().ToArray();
     }
 }

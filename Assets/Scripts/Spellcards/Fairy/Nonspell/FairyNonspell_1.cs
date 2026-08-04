@@ -15,13 +15,14 @@ public class FairyNonspell_1 : SpellcardBase
     private static WaitForSeconds _waitForSecondsCircularHoming = new WaitForSeconds(0.6f);
     private static WaitForSeconds _waitForSecondsColorChange = new WaitForSeconds(1.8f);
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _waitForSecondsCircularHoming = new WaitForSeconds(shotInterval);
         _waitForSecondsColorChange = new WaitForSeconds(waitUntilShotChangeColor);
     }
 
-    protected override IEnumerator SpellcardShoot()
+    protected override IEnumerator AttackShoot()
     {
         yield return new WaitForSeconds(1f);
         StartCoroutine(HomingCircularShoot());
@@ -36,9 +37,10 @@ public class FairyNonspell_1 : SpellcardBase
             Vector3 targetDirection = (PlayerPosition - transform.position).normalized;
             float angleHoming = Mathf.Atan2(targetDirection.y, targetDirection.x);
 
+            SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_1);
             homingShotCache.Clear();
-            int jump = 200 / circularShotProjecitleCount;
-            for (int i = -100; i < 100; i += jump)
+            int jump = 180 / circularShotProjecitleCount;
+            for (int i = -90; i < 90; i += jump)
             {
                 float radianOffset = i * Mathf.Deg2Rad;
                 homingShotCache.Add(CreateHomingProjectile(angleHoming + radianOffset));
@@ -54,7 +56,6 @@ public class FairyNonspell_1 : SpellcardBase
         ChangeShotAndVelocity(defaultProjectiles);
     }
 
-    Vector3 rotation = new(0, 0, 180);
     DefaultProjectile CreateHomingProjectile(float angle)
     {
         DefaultProjectile projectile = CreateSimpleProjectile(
@@ -63,7 +64,6 @@ public class FairyNonspell_1 : SpellcardBase
             transform.position
         );
 
-        projectile.SetRotation(rotation);
         projectile.SetSpeedExhaustType(DefaultProjectile.SpeedExhaustType.STAY_STILL);
         projectile.SetDirection(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)));
         projectile.SetAcceleration(StarShotAcceleration);
@@ -74,20 +74,24 @@ public class FairyNonspell_1 : SpellcardBase
 
     void ChangeShotAndVelocity(List<DefaultProjectile> defaultProjectiles)
     {
+        SoundManager._instance.PlaySound(SfxData.SFXType.REVERSE, SoundManager.SfxChannel.TRANSFORM);
         foreach (DefaultProjectile projectile in defaultProjectiles)
         {
             if (!projectile.gameObject.activeSelf) continue;
 
-            ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(
-                projectile,
-                bulletsUse[1]
+            DefaultProjectile transformProjectile = CreateSimpleProjectile(
+                    bulletsUse[1],
+                    0f,
+                    projectile.transform.position
                 );
 
-            projectile.SetRotation(Vector3.zero);
-            projectile.SetDirection(Vector3.down);
-            projectile.SetSpeed(RedShotVelocity);
-            projectile.SetAcceleration(RedShotAcceleration);
-            projectile.InitializeAndShoot();
+            transformProjectile.SetRotation(Vector3.zero);
+            transformProjectile.SetDirection(Vector3.down);
+            transformProjectile.SetSpeed(RedShotVelocity);
+            transformProjectile.SetAcceleration(RedShotAcceleration);
+            transformProjectile.InitializeAndShoot();
+
+            projectile.ReturnToPool();
         }
     }
 }

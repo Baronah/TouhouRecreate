@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ public class BossHealthBar : MonoBehaviour
         InitializeLifesIndicator();
     }
 
-    [SerializeField] TMP_Text SpellNameText;
+    [SerializeField] TMP_Text SpellNameText, SpellTimer;
     [SerializeField] GameObject SpellNameBar;
     public void SetSpellName(SpellData data)
     {
@@ -40,7 +41,7 @@ public class BossHealthBar : MonoBehaviour
     }
 
     [SerializeField] GameObject healthBarParent;
-    [SerializeField] float maxWidth = 800;
+    [SerializeField] float maxWidth = 700;
     [SerializeField] GameObject healthBarPref;
 
     List<HealthBarScript> healthBars = new();
@@ -105,6 +106,7 @@ public class BossHealthBar : MonoBehaviour
     private void Update()
     {
         if (attached) UpdateHealthBar();
+        UpdateSpellTimer(SpellcardManager._instance.GetCurrentSpell());
     }
 
     void UpdateHealthBar()
@@ -116,8 +118,22 @@ public class BossHealthBar : MonoBehaviour
         }
     }
 
+    public void UpdateSpellTimer(SpellcardBase spell)
+    {
+        if (spell)
+        {
+            int spellTime = (int)Mathf.Min(spell.GetSpellTime, 99);
+            SpellTimer.text = String.Format("{0:D2}", spellTime);
+        }
+        else
+        {
+            SpellTimer.text = "N/A";
+        }
+    }
+
     public void SetHUDEmpty()
     {
+        SpellTimer.text = string.Empty;
         attached = null;
         SpellNameText.text = BossName.text = string.Empty;
         SpellNameBar.SetActive(false);
