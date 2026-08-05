@@ -57,14 +57,14 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] float defaultCooldown = 1f;
 
-    public void PlaySound(SfxData.SFXType SFXType, SfxChannel sfxChannel = SfxChannel.SHOOT)
+    public void PlaySound(SfxData.SFXType SFXType, SfxChannel sfxChannel = SfxChannel.SHOOT, float volume = -1f)
     {
         int channelIndex = (int)sfxChannel;
         if (Cooldowns[channelIndex] > 0) return;
 
         AudioSource audioPlayer = audioSources[channelIndex];
 
-        audioPlayer.volume = ChannelVolume[(int)sfxChannel];
+        audioPlayer.volume = volume == -1 ? ChannelVolume[(int)sfxChannel] : volume;
         audioPlayer.clip = sfxData.sfxs[(int)SFXType];
         audioPlayer.Play();
 

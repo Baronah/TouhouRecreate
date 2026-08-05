@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UI;
 using static SpellcardBase;
 
 [Singleton]
@@ -64,6 +63,53 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float NaturalScoreGain = 5_000;
     private void Update()
     {
-        AddScore(NaturalScoreGain * Time.deltaTime);
+        CheckForGameOver();
+
+        if (IsGameOver) return;
+        // AddScore(NaturalScoreGain * Time.deltaTime);
+        if (Input.GetKeyDown(InputManager.PauseKey))
+        {
+            PauseScreen._instance.TogglePause();
+        }
+    }
+
+    public void OnReplaySave()
+    {
+
+    }
+
+    void CheckForGameOver()
+    {
+        if (IsGameOver || !BeginTracking) return;
+        IsGameOver = !PlayerManager._instance.IsPlayerAlive;
+
+        if (IsGameOver) OnGameOver();
+    }
+
+    public bool IsGameOver { get; private set; } = false;
+    public void OnGameOver()
+    {
+        IsGameOver = true;
+        PauseScreen._instance.SetGameOverScreen();
+
+        PlayerPrefs.SetFloat("HighScore", HiScore);
+    }
+
+    public void WaitForSecondThenShowMenu(float c, PauseScreen.DelegateWaiting forcepauseFunc)
+        => StartCoroutine(C_WaitForSecondsThenShowMenu(c, forcepauseFunc));
+
+    public IEnumerator C_WaitForSecondsThenShowMenu(float c, PauseScreen.DelegateWaiting forcepause)
+    {
+        yield return new WaitForSeconds(c);
+        forcepause();
+    }
+
+    private HashSet<EnemyBase> TrackingEnemies = new();
+    private bool BeginTracking = false;
+    public void TrackEnemy(EnemyBase enemyBase)
+    {
+        if (TrackingEnemies.Contains(enemyBase)) return;
+        TrackingEnemies.Add(enemyBase);
+        BeginTracking = true;
     }
 }

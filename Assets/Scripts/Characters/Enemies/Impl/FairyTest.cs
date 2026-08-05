@@ -37,6 +37,7 @@ public class FairyTest : EnemyBase
 
     private void StartShooting()
     {
+        GameManager._instance.TrackEnemy(this);
         StartCoroutine(ShootCoroutine());
     }
 
@@ -60,7 +61,30 @@ public class FairyTest : EnemyBase
 
     protected override void OnDeath()
     {
-        base.OnDeath();
+        ProjectileManager._instance.ClearShootsOfType(GetAllBulletTypes());
         BossHealthBar._instance.SetHUDEmpty();
+        StartCoroutine(WaitForDestruction());
+    }
+
+    [SerializeField] GameObject ExplodeEffect;
+    IEnumerator WaitForDestruction()
+    {
+        SoundManager._instance.PlaySound(SfxData.SFXType.BOSS_DEFEAT, SoundManager.SfxChannel.PLAYER_DEATH);
+        GameObject o = Instantiate(ExplodeEffect, transform.position, Quaternion.identity);
+        Destroy(o, 3);
+
+        float c = 0, d = 1f;
+        Color c1 = Color.white, c2 = Color.clear;   
+        while (c < d)
+        {
+            spriteRenderer.color = Color.Lerp(c1, c2, c * 1.0f / d);
+            c += Time.deltaTime;
+            yield return null;
+        }
+        spriteRenderer.color = c2;
+
+        yield return new WaitForSeconds(1f);
+        GameManager._instance.OnGameOver();
+        gameObject.SetActive(false);
     }
 }

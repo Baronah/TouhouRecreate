@@ -114,6 +114,7 @@ public class FairySpellcard_4 : SpellcardBase
         SoundManager._instance.PlaySound(SfxData.SFXType.BOOMM, SoundManager.SfxChannel.PLAYER);
         yield return new WaitForSeconds(0.15f);
 
+        //ChargeEffect._instance.DoCircleEffect(stars[0].transform.position, GetColorBasedOnStar(stars[0].GetBulletType), 0.4f);
         CreateMochi(stars[0].transform.position, stars[0].GetBulletType);
         foreach (DefaultProjectile star in stars)
         {

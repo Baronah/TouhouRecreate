@@ -134,7 +134,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: front00_29
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 882
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d995c58479c0edf4b913b5003526b0b1
+      internalID: 680594682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_54
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 767
+        width: 453
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e16bc445da61c945b4bd638d785389d
+      internalID: 1967514720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_55
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 465
+        width: 308
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baec1399f11ce5a489d45f36043848ac
+      internalID: -1944452216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_56
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 435
+        width: 332
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca9b14aeae0f694ead54f4e3af28209
+      internalID: -982148194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_57
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 255
+        width: 173
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca2d43a3a30bb1640bd16b109b1cc886
+      internalID: -1821013793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_58
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 187
+        width: 298
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18276c011a2e66d45a5a1cc0987bc903
+      internalID: -152662452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_60
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 0
+        width: 88
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82edc43bd9e1a294a9732468764c9e67
+      internalID: -993932824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_1
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 703
+        width: 427
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06e289ca6742554bbfc913e6e4b0dda
+      internalID: -706817616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_0
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 641
+        width: 285
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f68e2247a3037a94cb5321c73cc05a80
+      internalID: 1271730790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_3
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 580
+        width: 184
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f548c2526fa4a6f4d919c82aff74ee4a
+      internalID: 1359078067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_61
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 517
+        width: 184
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f1f1c560c887a48b47796ecbf9c95e
+      internalID: 560520657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front00_59
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 91
+        width: 248
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bfa7b931e130c1439505441ad807703
+      internalID: 867621786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +397,70 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      front00_0: 1271730790
+      front00_1: -706817616
+      front00_10: 1135683105
+      front00_11: 1331874620
+      front00_12: 25731997
+      front00_13: -1274657881
+      front00_14: -1739142038
+      front00_15: -2008508686
+      front00_16: -1213963168
+      front00_17: 1464690216
+      front00_18: -1517366658
+      front00_19: -1536173892
+      front00_2: -560499251
+      front00_20: -1697933028
+      front00_21: -1695457556
+      front00_22: -1438691649
+      front00_23: -1365172593
+      front00_24: -577877383
+      front00_25: -1224262911
+      front00_26: 1266661051
+      front00_27: -1362235265
+      front00_28: -1782056905
+      front00_29: 680594682
+      front00_3: 1359078067
+      front00_30: -103224957
+      front00_31: 452510043
+      front00_32: -1854547575
+      front00_33: 305121179
+      front00_34: 271355430
+      front00_35: -857759248
+      front00_36: -346120101
+      front00_37: -1219209418
+      front00_38: 1130354401
+      front00_39: -959170478
+      front00_4: -2126240807
+      front00_40: -262756014
+      front00_41: -1756719346
+      front00_42: -1492961605
+      front00_43: 2005253794
+      front00_44: -1783387349
+      front00_45: 1907287914
+      front00_46: 1581444317
+      front00_47: -1310951263
+      front00_48: -1221519712
+      front00_49: 1449524171
+      front00_5: 771083498
+      front00_50: 480581338
+      front00_51: 544722471
+      front00_52: 1383939258
+      front00_53: 328365554
+      front00_54: 1967514720
+      front00_55: -1944452216
+      front00_56: -982148194
+      front00_57: -1821013793
+      front00_58: -152662452
+      front00_59: 867621786
+      front00_6: 1840043747
+      front00_60: -993932824
+      front00_61: 560520657
+      front00_62: 483974592
+      front00_7: 1404623428
+      front00_8: 1970346759
+      front00_9: -607856616
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

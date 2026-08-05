@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 450
-  SpellScore: 2500000
+  SpellScore: 3200000
   SpellTime: 55
   DamageIntakeRatio: 0.25
   Name: Star sign "The Stars Descend"
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 350
-  SpellScore: 2500000
+  SpellScore: 3000000
   SpellTime: 45
   DamageIntakeRatio: 0.25
   Name: '"When You Wish upon the Stars"'
@@ -288,11 +288,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 500
-  SpellScore: 3000000
+  SpellScore: 5000000
   SpellTime: 60
   DamageIntakeRatio: 0.25
   Name: '"A starry night, the city of Light"'
-  PrepareTime: 0.5
+  PrepareTime: 1.2
   spellType: 1
   clearType: 0
   bulletsUse: 01000000040000000500000006000000
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 1
-  SpellScore: 5000000
+  SpellScore: 7500000
   SpellTime: 60
   DamageIntakeRatio: 0
   Name: '"Supernova"'
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 8330292754293291618}
   - component: {fileID: 5489251542525251450}
   m_Layer: 8
-  m_Name: FairyTest
+  m_Name: MrTums
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,6 +861,7 @@ MonoBehaviour:
   IsUsingSpellcard: 0
   MagicCircle: {fileID: 4929569567079744476}
   SpellcardEffect: {fileID: 921589986963618754}
+  ExplodeEffect: {fileID: 2519207252249288083, guid: 0a870ac2392ee7d48a6e6e5c5620eeeb, type: 3}
 --- !u!61 &5489251542525251450
 BoxCollider2D:
   m_ObjectHideFlags: 0

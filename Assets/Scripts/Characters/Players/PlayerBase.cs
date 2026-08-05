@@ -67,7 +67,10 @@ public abstract class PlayerBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isReady || IsDead) return;
+        if (!isReady 
+            || IsDead 
+            || PauseScreen._instance.IsGamePaused
+            || GameManager._instance.IsGameOver) return;
 
         UpdateCooldowns();
         SetFocus();

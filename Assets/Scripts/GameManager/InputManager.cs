@@ -7,11 +7,13 @@ public static class InputManager
 {
     private static KeyCode defaultShootKey = KeyCode.Z,
                            defaultBoomKey = KeyCode.X,
-                           defaultFocusKey = KeyCode.LeftShift;
+                           defaultFocusKey = KeyCode.LeftShift,
+                           defaultPauseKey = KeyCode.Escape;
 
     public static KeyCode ShootKey = KeyCode.Z;
     public static KeyCode BoomKey = KeyCode.X;
     public static KeyCode FocusKey = KeyCode.LeftShift;
+    public static KeyCode PauseKey = KeyCode.Escape;
 
     public static Vector2 GetMovementInput()
     {
@@ -23,5 +25,6 @@ public static class InputManager
         ShootKey = Enum.Parse<KeyCode>(PlayerPrefs.GetString("ShootKey", defaultShootKey.ToString()));
         BoomKey = Enum.Parse<KeyCode>(PlayerPrefs.GetString("BoomKey", defaultBoomKey.ToString()));
         FocusKey = Enum.Parse<KeyCode>(PlayerPrefs.GetString("FocusKey", defaultFocusKey.ToString()));
+        PauseKey = Enum.Parse<KeyCode>(PlayerPrefs.GetString("PauseKey", defaultPauseKey.ToString()));
     }
 }

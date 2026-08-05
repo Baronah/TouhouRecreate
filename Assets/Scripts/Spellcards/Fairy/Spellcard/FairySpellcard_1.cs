@@ -12,7 +12,9 @@ public class FairySpellcard_1 : SpellcardBase
 {
     protected override IEnumerator AttackShoot()
     {
-        yield return new WaitForSeconds(1f);
+        SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
+        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.25f);
+        yield return new WaitForSeconds(1.4f);
         StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -90f, SpeedExhaustType.STAY_STILL, false));
         StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -115f, SpeedExhaustType.STAY_STILL, false));
         StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -160f, SpeedExhaustType.STAY_STILL, false));
@@ -24,17 +26,20 @@ public class FairySpellcard_1 : SpellcardBase
         {
             yield return StartCoroutine(BoWaP(3.6f, bulletsUse[1], 150f, 25f, SpeedExhaustType.STAY_STILL, reversed));
             SoundManager._instance.PlaySound(SfxData.SFXType.SHATTER_1, SoundManager.SfxChannel.EFFECT);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.07f);
 
+            ChargeEffect._instance.DoCircleEffect(spellOwner.transform.position, Color.blue, 0.6f);
             StopAllBullets();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.4f);
 
             SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
-            yield return new WaitForSeconds(1.5f);
+            ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, new Color(1, 0.62f, 0.62f), 1.25f);
+            yield return new WaitForSeconds(1.6f);
+            ChargeEffect._instance.DoCircleEffect(spellOwner.transform.position, Color.red, 0.5f);
             ChangeShotsVelocityOfCachedProjectile();
 
             reversed = !reversed;
-            yield return new WaitForSeconds(9f);
+            yield return new WaitForSeconds(8f);
         }
     }
 
@@ -93,7 +98,6 @@ public class FairySpellcard_1 : SpellcardBase
 
         foreach (DefaultProjectile shoot in projectilesCache)
         {
-            ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(shoot, bulletsUse[2]);
             shoot.SetAcceleration(-350f);
             shoot.InitializeAndShoot();
         }
@@ -102,12 +106,14 @@ public class FairySpellcard_1 : SpellcardBase
     void ChangeShotsVelocityOfCachedProjectile()
     {
         projectilesCache =
-                ProjectileManager._instance.GetProjectilesOfType(bulletsUse[2]).ToList();
+                ProjectileManager._instance.GetProjectilesOfType(bulletsUse[1]).ToList();
         SoundManager._instance.PlaySound(SfxData.SFXType.REVERSE, SoundManager.SfxChannel.EFFECT);
         float downAngle = Mathf.Atan2(Vector3.down.y, Vector3.down.x); 
         
         foreach (DefaultProjectile shoot in projectilesCache)
         {
+            ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(shoot, bulletsUse[2]);
+
             shoot.SetRotation(waveRotation * -1.5f);
             shoot.SetDirection(new Vector3(Mathf.Cos(downAngle), Mathf.Sin(downAngle)));
             shoot.SetSpeed(5);

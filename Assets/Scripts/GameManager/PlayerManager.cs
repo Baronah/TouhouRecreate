@@ -105,6 +105,8 @@ public class PlayerManager : MonoBehaviour
         Player = player;
     }
 
+    public bool CanPlayerRevive => CurrentLives > 0;
+    public bool IsPlayerAlive => CanPlayerRevive || ActivePlayer;
     public void OnPlayerDeath(PlayerBase player)
     {
         SpellcardManager._instance.MakeSpellcardCaptureInvalid();

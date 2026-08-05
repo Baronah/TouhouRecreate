@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7baea908ecabb2e479d75439a44cd72d
+guid: 2fa88852582b7394893ba7304efa95ea
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,56 +93,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BulletBreak2_0
+      name: Default_System_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 64
-        height: 64
+        y: 51
+        width: 128
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1299a07a8e802ad4881d7558ff122b78
-      internalID: -659006454
+      spriteID: 5505884517739014e9d59615c7d6c576
+      internalID: -53154086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletBreak2_1
+      name: Default_System_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
+        x: 132
+        y: 50
+        width: 5
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c2e05e5283fc434dbed3733658a19b0
-      internalID: -647739795
+      spriteID: 3474410be560f0245b3080e450ab1f30
+      internalID: -1276435691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletBreak2_2
+      name: Default_System_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
+        x: 0
+        y: 40
+        width: 128
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bbadad36c81a6245bfafd27bece79e0
-      internalID: 1304706280
+      spriteID: 7c1f3d834d73923418e74672573045b6
+      internalID: 1223721583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletBreak2_3
+      name: Default_System_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
+        x: 0
+        y: 28
+        width: 128
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8abc484a2432fa42bb3f7978dc49e7d
-      internalID: -159149597
+      spriteID: 9ef428a3fc9a94e4a8275dfc4fcb449c
+      internalID: -2104836724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletBreak2_4
+      name: Default_System_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
+        x: 2
+        y: 20
+        width: 251
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49f6dcc85d51b244096d50db2edc065d
-      internalID: 1405090251
+      spriteID: 207a63fe4b2b49f478035445f91ec43e
+      internalID: 562619138
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletBreak2_5
+      name: Default_System_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
+        x: 2
+        y: 12
+        width: 251
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,50 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 138eecf13c8a5fa4292f04b14fab2a0a
-      internalID: -129443120
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BulletBreak2_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 182abbd1c222f7849829c91ef23a0f1b
-      internalID: 133851259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BulletBreak2_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 476201e18e5f83e49a2c7a12ae0d64d4
-      internalID: -2024995109
+      spriteID: 076f9d48883234d49b0e7ab1c3c363e8
+      internalID: 204955729
       vertices: []
       indices: 
       edges: []
@@ -314,14 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BulletBreak2_0: -659006454
-      BulletBreak2_1: -647739795
-      BulletBreak2_2: 1304706280
-      BulletBreak2_3: -159149597
-      BulletBreak2_4: 1405090251
-      BulletBreak2_5: -129443120
-      BulletBreak2_6: 133851259
-      BulletBreak2_7: -2024995109
+      Default_System_0: -53154086
+      Default_System_1: -1276435691
+      Default_System_2: 1223721583
+      Default_System_3: -2104836724
+      Default_System_4: 562619138
+      Default_System_5: 204955729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

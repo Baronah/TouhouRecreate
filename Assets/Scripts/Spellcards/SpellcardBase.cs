@@ -138,17 +138,27 @@ public abstract class SpellcardBase : MonoBehaviour
     {
         if (IsShooting && IsPrepared)
         {
-            if (clearType != SpellClearType.SURVIVAL)
-            {
-                SpellScore -= ScoreDrainPerSec * Time.deltaTime;
-                if (SpellScore < MinScore) SpellScore = MinScore;
-            }
+            UpdateSpellScore();
             SpellTime -= Time.deltaTime;
             if (SpellTime < 0)
             {
                 OnAttackFinish();
             }
         }
+    }
+
+    void UpdateSpellScore()
+    {
+        if (SpellCaptureIsInvalid) return;
+
+        if (clearType != SpellClearType.SURVIVAL)
+        {
+            SpellScore -= ScoreDrainPerSec * Time.deltaTime;
+        }
+        
+        SpellScore = Mathf.Max(SpellScore, MinScore);
+
+        SpellcardManager._instance.SetSpellPoint((int)SpellScore);
     }
 
     protected abstract IEnumerator AttackShoot();
@@ -213,6 +223,7 @@ public abstract class SpellcardBase : MonoBehaviour
     public void PlayerCheatedThroughSpell()
     {
         SpellCaptureIsInvalid = true;
+        SpellcardManager._instance.SetSpellFailed();
     }
 
     public void OnSpellCardClear(SpellcardManager.SpellcardFinishType spellcardFinishType)

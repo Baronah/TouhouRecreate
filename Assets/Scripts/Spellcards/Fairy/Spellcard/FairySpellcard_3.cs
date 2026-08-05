@@ -20,7 +20,10 @@ public class FairySpellcard_3 : SpellcardBase
     {
         yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(MoveToCenter());
-        yield return new WaitForSeconds(1f);
+
+        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.25f);
+        SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
+        yield return new WaitForSeconds(1.5f);
 
         float offset = 0;
         int count = 0;
@@ -28,12 +31,17 @@ public class FairySpellcard_3 : SpellcardBase
         {
             if (count >= 4)
             {
+                ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.1f);
                 SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
                 yield return new WaitForSeconds(1.3f);
                 SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_2, SoundManager.SfxChannel.TRANSFORM);
+                ChargeEffect._instance.DoCircleEffect(spellOwner.transform.position, Color.white, 0.4f);
+
+                int countSeed = Random.Range(0, 4);
                 for (int i = 0; i < 360; i += 45)
                 {
-                    CreateBigStars(bulletsUse[Random.Range(0, 4)], i);
+                    CreateBigStars(bulletsUse[countSeed % 4], i);
+                    countSeed++;
                 }
 
                 count = 0;

@@ -113,7 +113,9 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void OnProjectileHit(DefaultProjectile projectile)
     {
-        if (IsInvulnerbale) return;
+        if (IsInvulnerable) return;
+
+        GameManager._instance.AddScore(200 * projectile.GetDamage);
 
         float damage = currentActiveSpellcard.GetSpellCardDamage(projectile.GetDamage);
         health[currentLifeIndex][currentSpellcardIndex] -= damage;
@@ -145,9 +147,8 @@ public class EnemyBase : MonoBehaviour
         ProjectileManager._instance.ClearShootsOfType(GetAllBulletTypes());
     }
 
-
     float InvulnerableTimer = 0;
-    public bool IsInvulnerbale => InvulnerableTimer > 0;
+    public bool IsInvulnerable => InvulnerableTimer > 0;
     public void MakeInvulnerable(float duration)
     {
         InvulnerableTimer = Mathf.Max(InvulnerableTimer, duration);

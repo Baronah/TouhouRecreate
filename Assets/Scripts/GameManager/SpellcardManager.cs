@@ -181,25 +181,32 @@ public class SpellcardManager : MonoBehaviour
         CurrentSpellcard.PlayerCheatedThroughSpell();
     }
 
-    [SerializeField] TMP_Text SpellcardCaptureMessage;
+    [SerializeField] GameObject SpellcardCaptureMessage;
+    [SerializeField] Image SpellCardCaptureStatusImg;
+    [SerializeField] Sprite CaptureSuccessSprite, CaptureFailedSprite;
+    [SerializeField] TMP_Text CapturePointTxt, SpellPointTxt, HistoryTxt;
     public void ShowSpellcardCaptureMessage(int score)
     {
-        SpellcardCaptureMessage.text =
-            $"<b>Get Spellcard Bonus!</b>\n\n<color=#f1f1f1>+{string.Format($"{score:N0}")}</color>";
+        SpellCardCaptureStatusImg.sprite = CaptureSuccessSprite;
+        CapturePointTxt.text = string.Format($"+{score:N0}");
         StartCoroutine(TurnMessageOffAfter(2));
     }
 
     public void ShowSpellcardFailMessage()
     {
-        SpellcardCaptureMessage.text =
-            $"<b><color=#c1c1c1>Bonus Failed!</color></b>";
+        SpellCardCaptureStatusImg.sprite = CaptureFailedSprite;
+        CapturePointTxt.text = string.Empty;
         StartCoroutine(TurnMessageOffAfter(1.5f));
     }
 
     IEnumerator TurnMessageOffAfter(float c)
     {
-        SpellcardCaptureMessage.gameObject.SetActive(true);
+        SpellcardCaptureMessage.SetActive(true);
         yield return new WaitForSeconds(c);
-        SpellcardCaptureMessage.gameObject.SetActive(false);
+        SpellcardCaptureMessage.SetActive(false);
     }
+
+    public void SetSpellPoint(int pt) => SpellPointTxt.text = string.Format($"{pt:N0}");
+    public void SetSpellFailed() => SpellPointTxt.text = "Failed";
+    public void SetHistory(string text) => HistoryTxt.text = text;
 }
