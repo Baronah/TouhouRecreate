@@ -6,9 +6,9 @@ using UnityEngine.UIElements;
 using static BulletData;
 
 [Singleton]
-public class ObjectPooling : MonoBehaviour
+public class ProjectileObjectPooling : MonoBehaviour
 {
-    public static ObjectPooling _instance;
+    public static ProjectileObjectPooling _instance;
     [SerializeField] private int initSize = 50;
     [SerializeField] private int expandSize = 50;
     [SerializeField] GameObject ProjectilePrefab;

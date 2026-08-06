@@ -21,7 +21,7 @@ public class FairySpellcard_3 : SpellcardBase
         yield return new WaitForSeconds(0.25f);
         yield return StartCoroutine(MoveToCenter());
 
-        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.25f);
+        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.4f);
         SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
         yield return new WaitForSeconds(1.5f);
 
@@ -70,12 +70,13 @@ public class FairySpellcard_3 : SpellcardBase
     IEnumerator MoveToCenter()
     {
         Vector3 center = GameManager._instance.CenterScreen;
+        Vector3 init = spellOwner.transform.position;
 
-        float c = 0, duration = 2f;
+        float c = 0, duration = 1f;
         spellOwner.MakeInvulnerable(duration);
         while (c < duration)
         {
-            spellOwner.transform.position = Vector3.Lerp(spellOwner.transform.position, center, c * 1.0f / duration);
+            spellOwner.transform.position = Vector3.Lerp(init, center, c * 1.0f / duration);
             c += Time.deltaTime;
             yield return null;
         }

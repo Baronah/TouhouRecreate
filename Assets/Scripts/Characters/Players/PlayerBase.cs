@@ -156,7 +156,7 @@ public abstract class PlayerBase : MonoBehaviour
         IsDead = true;
         HitboxShow.SetActive(false);
         PlayerManager._instance.OnPlayerDeath(this);
-        SoundManager._instance.PlaySound(SfxData.SFXType.PLAYER_EXPLODE, SoundManager.SfxChannel.PLAYER_DEATH);
+        SoundManager._instance.PlaySound(SfxData.SFXType.PLAYER_EXPLODE, SoundManager.SfxChannel.PLAYER_DEATH, 0.7f);
         StartCoroutine(Explode());
         StartCoroutine(PlayerFade());
     }

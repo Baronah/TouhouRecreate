@@ -117,21 +117,27 @@ public abstract class SpellcardBase : MonoBehaviour
         IsShooting = true;
     }
 
-    IEnumerator AttackPrepare()
+    protected virtual IEnumerator AttackPrepare()
     {
         yield return new WaitForSeconds(PrepareTime);
+        OnSpellPrepareFinished();
+
+        yield return InitializeSpellCard();
+        StartCoroutine(AttackShoot());
+    }
+
+    protected void OnSpellPrepareFinished()
+    {
         IsPrepared = true;
         BossHealthBar._instance.SetSpellName(GetData());
         GameManager._instance.SetBackground(spellType);
-        
+
         if (spellType == SpellType.SPELLCARD)
         {
             spellOwner.IsUsingSpellcard = true;
         }
 
         if (clearType == SpellClearType.SURVIVAL) spellOwner.DisableHitbox();
-        yield return InitializeSpellCard();
-        StartCoroutine(AttackShoot());
     }
 
     private void Update()
@@ -189,6 +195,7 @@ public abstract class SpellcardBase : MonoBehaviour
         this.enabled = false;
         IsShooting = false;
 
+        BossHealthBar._instance.ClearSpell();
         BossHealthBar._instance.UpdateSpellTimer(this);
         SoundManager._instance.PlaySound(SfxData.SFXType.ENEMY_VANISH, SoundManager.SfxChannel.EFFECT);
     }

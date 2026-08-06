@@ -106,10 +106,10 @@ public class ProjectileManager : MonoBehaviour
         collider.radius = renderer.sprite.bounds.extents.magnitude / 5;
     }
 
-    public Vector3 ProjectileBaseScale => ObjectPooling._instance.ProjectileBaseScale;
+    public Vector3 ProjectileBaseScale => ProjectileObjectPooling._instance.ProjectileBaseScale;
     public DefaultProjectile CreateSimpleProjectile(BulletData.BulletType bulletType, DefaultProjectile.TargetType targetType, float strength, float speed, Vector3 position, float scale = 1.0f)
     {
-        GameObject projectile = ObjectPooling._instance.GetProjectile(bulletType, position, scale);
+        GameObject projectile = ProjectileObjectPooling._instance.GetProjectile(bulletType, position, scale);
         if (targetType == TargetType.ENEMY) projectile.layer = GameManager.ProjectileEnemyLayer;
         else projectile.layer = GameManager.ProjectilePlayerLayer;
 

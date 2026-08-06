@@ -185,6 +185,7 @@ public class SpellcardManager : MonoBehaviour
     [SerializeField] Image SpellCardCaptureStatusImg;
     [SerializeField] Sprite CaptureSuccessSprite, CaptureFailedSprite;
     [SerializeField] TMP_Text CapturePointTxt, SpellPointTxt, HistoryTxt;
+    [SerializeField] Image[] BonusAndHistory;
     public void ShowSpellcardCaptureMessage(int score)
     {
         SpellCardCaptureStatusImg.sprite = CaptureSuccessSprite;
@@ -209,4 +210,76 @@ public class SpellcardManager : MonoBehaviour
     public void SetSpellPoint(int pt) => SpellPointTxt.text = string.Format($"{pt:N0}");
     public void SetSpellFailed() => SpellPointTxt.text = "Failed";
     public void SetHistory(string text) => HistoryTxt.text = text;
+
+    [SerializeField] GameObject SpellBox;
+    [SerializeField] Image SpellBar;
+    [SerializeField] TMP_Text SpellName;
+
+    Vector3 SpellBoxInitPos = new(100, 430);
+    public void DoSpellAnimation()
+    {
+        SpellBox.transform.localPosition = SpellBoxInitPos - new Vector3(0, 750);
+        
+        SpellBar.transform.localScale *= 2;
+        SpellBar.color = ColorUtil.clearWhite;
+
+        SpellName.transform.localScale *= 2;
+        SpellName.color = ColorUtil.clearWhite;
+
+        SpellPointTxt.color = ColorUtil.clearWhite;
+        HistoryTxt.color = ColorUtil.clearWhite;
+        foreach (var item in BonusAndHistory) item.color = ColorUtil.clearWhite;
+
+        StartCoroutine(PlaySpellAnimation());
+    }
+
+    IEnumerator PlaySpellAnimation()
+    {
+        // scale to normal
+        float c = 0, d = 1f;
+        Vector3 scaleFrom = Vector3.one * 2, scaleTo = Vector3.one;
+        Color colorFrom = ColorUtil.clearWhite, colorTo = Color.white;
+        while (c < d)
+        {
+            float t = c * 1.0f / d;
+            SpellName.transform.localScale = SpellBar.transform.localScale = Vector3.Lerp(scaleFrom, scaleTo, t * t);
+            SpellName.color = SpellBar.color = Color.Lerp(colorFrom, colorTo, t * t);
+            c += Time.deltaTime;
+            yield return null;
+        }
+
+        SpellName.transform.localScale = SpellBar.transform.localScale = scaleTo;
+        SpellName.color = SpellBar.color = colorTo;
+
+        yield return new WaitForSeconds(0.67f);
+
+        // move bar to top
+        c = 0;
+        d = 0.4f;
+        Vector3 moveFrom = SpellBox.transform.localPosition, moveTo = SpellBoxInitPos;
+        while (c < d)
+        {
+            float t = c * 1.0f / d;
+            SpellBox.transform.localPosition = Vector3.Lerp(moveFrom, moveTo, t);
+            c += Time.deltaTime;
+            yield return null;
+        }
+
+        SpellBox.transform.localPosition = moveTo;
+        
+        // show bonus and history
+        c = 0;
+        d = 0.25f;
+        while (c < d)
+        {
+            float t = c * 1.0f / d;
+            foreach (var item in BonusAndHistory) item.color = Color.Lerp(colorFrom, colorTo, t);
+            SpellPointTxt.color = HistoryTxt.color = Color.Lerp(colorFrom, colorTo, t);
+            c += Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (var item in BonusAndHistory) item.color = colorTo;
+        SpellPointTxt.color = HistoryTxt.color = colorTo;
+    }
 }

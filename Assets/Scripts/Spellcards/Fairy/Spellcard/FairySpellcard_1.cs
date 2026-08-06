@@ -34,8 +34,9 @@ public class FairySpellcard_1 : SpellcardBase
 
             SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
             ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, new Color(1, 0.62f, 0.62f), 1.25f);
-            yield return new WaitForSeconds(1.6f);
+            yield return new WaitForSeconds(1.5f);
             ChargeEffect._instance.DoCircleEffect(spellOwner.transform.position, Color.red, 0.5f);
+            yield return new WaitForSeconds(0.1f);
             ChangeShotsVelocityOfCachedProjectile();
 
             reversed = !reversed;

@@ -238,7 +238,7 @@ MonoBehaviour:
   SpellScore: 3000000
   SpellTime: 45
   DamageIntakeRatio: 0.25
-  Name: '"When You Wish upon the Stars"'
+  Name: '''Shioiri Nightfall"'
   PrepareTime: 0
   spellType: 1
   clearType: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   SpellScore: 5000000
   SpellTime: 60
   DamageIntakeRatio: 0.25
-  Name: '"A starry night, the city of Light"'
+  Name: '"A Starry Night, the City of Light"'
   PrepareTime: 1.2
   spellType: 1
   clearType: 0

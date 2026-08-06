@@ -20,6 +20,18 @@ public class FairySpellcard_4 : SpellcardBase
         BulletData.BulletType.STAR_ORANGE
     };
 
+    protected override IEnumerator AttackPrepare()
+    {
+        yield return new WaitForSeconds(PrepareTime);
+        SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
+        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.yellow, 1.5f);
+        yield return new WaitForSeconds(2f);
+        OnSpellPrepareFinished();
+
+        yield return InitializeSpellCard();
+        StartCoroutine(AttackShoot());
+    }
+
     int indexTrack = 0;
     protected override IEnumerator AttackShoot()
     {
@@ -165,10 +177,10 @@ public class FairySpellcard_4 : SpellcardBase
 
         float time = 1.5f;
         float timePerWave = 0.08f;
-        int spread = 60;
+        int spread = 45;
         int waveCount = Mathf.RoundToInt(time / timePerWave);
-        int waveJumpCount = spread / waveCount;
-        for (int o = 0; o < spread; o += waveJumpCount)
+        float waveJumpCount = spread / waveCount;
+        for (float o = 0; o < spread; o += waveJumpCount)
         {
             SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_2, SoundManager.SfxChannel.SHOOT);
             for (int i = 0; i < 360; i += starJumpPerWave)

@@ -201,7 +201,7 @@ public class DefaultProjectile : MonoBehaviour
             BulletBreakObjectPooling._instance.CreateExplosionAt(transform.position, transform.localScale.x / ProjectileManager._instance.ProjectileBaseScale.x);
         targetType = TargetType.NONE;
         spawnExplosionOnReturn = true;
-        ObjectPooling._instance.ReturnProjectile(this);
+        ProjectileObjectPooling._instance.ReturnProjectile(this);
     }
 
     public void ResetProperties()

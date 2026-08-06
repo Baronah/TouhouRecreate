@@ -38,7 +38,10 @@ public class BossHealthBar : MonoBehaviour
     {
         SpellNameText.text = data.Name;
         SpellNameBar.SetActive(data.SpellType == SpellType.SPELLCARD);
+        if (SpellNameBar.activeSelf) SpellcardManager._instance.DoSpellAnimation();
     }
+
+    public void ClearSpell() => SpellNameBar.SetActive(false);
 
     [SerializeField] GameObject healthBarParent;
     [SerializeField] float maxWidth = 700;

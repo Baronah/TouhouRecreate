@@ -155,7 +155,7 @@ public class PauseScreen : MonoBehaviour
         ResumeTxt.gameObject.SetActive(false);
 
         DelegateWaiting delegateWaiting = new(OnWaitingFinish);
-        GameManager._instance.WaitForSecondThenShowMenu(2f, delegateWaiting);
+        GameManager._instance.WaitForSecondThenShowMenu(1.5f, delegateWaiting);
     }
 
     public delegate void DelegateWaiting();

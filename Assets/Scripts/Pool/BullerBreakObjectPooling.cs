@@ -9,6 +9,7 @@ public class BulletBreakObjectPooling : MonoBehaviour
 
     [SerializeField] GameObject bulletBreakPref;
     [SerializeField] private int poolSize = 500;
+    [SerializeField] private int expandSize = 100;
 
     Queue<GameObject> poolQueue = new Queue<GameObject>();
 
@@ -36,6 +37,12 @@ public class BulletBreakObjectPooling : MonoBehaviour
         else
         {
             effect = Instantiate(bulletBreakPref, transform);
+            for (int i = 0; i < expandSize; i++)
+            {
+                GameObject o = Instantiate(bulletBreakPref, transform);
+                o.SetActive(false);
+                poolQueue.Enqueue(o);
+            }
         }
 
         effect.transform.position = position;
