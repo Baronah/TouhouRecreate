@@ -86,6 +86,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject PlayerPrefab;
     private PlayerBase Player;
     public PlayerBase ActivePlayer => Player;
+    public float GetPlayerHitboxRaidus() => Player ? Player.GetHitboxRadius() : 0f;
     public Vector3 PlayerPosition => ActivePlayer ? ActivePlayer.transform.position : GameManager._instance.CenterDown;
 
     public Vector3 GetPlayerRespawnPosition()

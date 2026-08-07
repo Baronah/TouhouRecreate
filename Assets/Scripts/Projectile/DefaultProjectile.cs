@@ -1,22 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using static BulletData;
 
-[RequireComponent(typeof(CircleCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class DefaultProjectile : MonoBehaviour
 {
-    public enum TargetType
-    {
-        NONE,
-        ENEMY,
-        PLAYER
-    }
-
-    private TargetType targetType = TargetType.NONE;
-
     public enum SpeedExhaustType
     {
         STAY_STILL,
@@ -28,44 +15,42 @@ public class DefaultProjectile : MonoBehaviour
     // STAY_STILL: The projectile will stay still at its current position.
     // CLEAR: The projectile will be returned to the pool.
     // CONTINUE: The projectile will continue to move. If acceleration is negative, it will move backward.
-    private SpeedExhaustType speedExhaustType = SpeedExhaustType.CONTINUE;
+    public SpeedExhaustType speedExhaustType { get; protected set; } = SpeedExhaustType.CONTINUE;
 
-    BulletType bulletType;
-    public void SetBulletType(BulletType bulletType) => this.bulletType = bulletType;
-    public BulletType GetBulletType => bulletType;
+    int bulletType;
+    public void SetBulletType(int bulletType) => this.bulletType = bulletType;
+    public int GetBulletType => bulletType;
+    public BulletType GetBulletTypeAsEnum => (BulletType)bulletType;
 
     SpriteRenderer spriteRenderer;
-    Rigidbody2D rb2d;
 
-    Vector3 direction;
-    float speed;
+    public Vector3 direction { get; protected set; }
+    public float speed;
 
     Vector3 rotationPerSec;
 
-    float displacementDegreePerSec;
+    public float displacementDegreePerSec { get; protected set; }
 
     float damage;
     public float GetDamage => damage;
 
+    public float hitboxRadius;
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         if (!spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
-        if (!rb2d) rb2d = GetComponent<Rigidbody2D>();
     }
 
-    float lifeTime = 999f;
-
     public bool initialized = false;
-    float accelerationPerSecond = 0f;
-    
-    public void SetProperties(BulletType type, TargetType targetType, float damage, float speed)
+    public float accelerationPerSecond { get; protected set; } = 0f;
+
+    public void SetProperties(int type, float damage, float speed)
     {
         Start();
 
         this.damage = damage;
         bulletType = type;
-        this.targetType = targetType;
         SetSpeed(speed);
     }
 
@@ -107,12 +92,12 @@ public class DefaultProjectile : MonoBehaviour
         spriteRenderer.color = color;
     }
 
-    public void Stop()
+    public virtual void Stop()
     {
         timePassed = 0;
         speed = 0;
         accelerationPerSecond = 0f;
-        rb2d.velocity = initVelocity = Vector2.zero;
+        initVelocity = Vector3.zero;
     }
 
     public void SetSpeedExhaustType(SpeedExhaustType speedExhaustType)
@@ -126,35 +111,33 @@ public class DefaultProjectile : MonoBehaviour
     }
 
     float spiralDamping = 0.5f;
-    void UpdateDirection()
+    protected virtual void UpdateDirection()
     {
         if (Mathf.Abs(displacementDegreePerSec) <= 0f) return;
-        // Calculate how much to turn this frame
+
         float turnThisFrame = displacementDegreePerSec * Time.fixedDeltaTime;
         Quaternion turnQuaternion = Quaternion.AngleAxis(turnThisFrame, Vector3.forward);
         Vector3 turnedDirection = turnQuaternion * direction;
 
         // Blend between current direction and turned direction
-        // This creates a spiral instead of a loop
         direction = Vector3.Slerp(direction, turnedDirection, spiralDamping).normalized;
     }
 
     Vector3 initVelocity;
     float timePassed = 0f;
-    void UpdateVelocity()
+
+    protected virtual void UpdateAcceleration()
     {
-        if (!rb2d) return;
-        
         timePassed += Time.fixedDeltaTime;
+        
         // acceleration
+        // v = v0 + at
         speed = initVelocity.magnitude + accelerationPerSecond * timePassed;
 
         CheckSpeed();
-
-        rb2d.velocity = direction.normalized * speed;
     }
 
-    void CheckSpeed()
+    protected virtual void CheckSpeed()
     {
         if (speed > 0) return;
         switch (speedExhaustType)
@@ -170,16 +153,36 @@ public class DefaultProjectile : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public virtual void UpdateEverything()
     {
         if (!initialized) return;
 
+        UpdateAcceleration();
         UpdateDirection();
-        UpdateVelocity();
         UpdateRotation();
+        UpdatePosition();
+        CheckForCollision();
     }
 
-    void UpdateRotation()
+    public virtual void UpdatePosition()
+    {
+        transform.position += direction * speed * Time.fixedDeltaTime;
+
+        if (GameManager._instance.hasShotOverbound(transform.position))
+        {
+            spawnExplosionOnReturn = false;
+            ProjectileManager._instance.CachedForPoolReturning(this);
+        }
+    }
+
+    public virtual void CheckForCollision()
+    {
+        // collision check against player — just distance
+        if (Vector3.SqrMagnitude(transform.position - PlayerManager._instance.PlayerPosition) < (hitboxRadius + PlayerManager._instance.GetPlayerHitboxRaidus()))
+            PlayerManager._instance.ActivePlayer.OnProjectileHit(this);
+    }
+
+    protected virtual void UpdateRotation()
     {
         if (rotationPerSec != Vector3.zero) transform.Rotate(rotationPerSec * Time.fixedDeltaTime);
         else
@@ -192,35 +195,28 @@ public class DefaultProjectile : MonoBehaviour
     bool spawnExplosionOnReturn = true;
     public void MakeSpawnExplosionOnDisappear(bool value) => spawnExplosionOnReturn = value;
 
-    public void ReturnToPool()
+    public virtual void ReturnToPool()
     {
         if (!gameObject.activeSelf || !initialized) return;
         initialized = false;
         ResetProperties();
         if (spawnExplosionOnReturn) 
             BulletBreakObjectPooling._instance.CreateExplosionAt(transform.position, transform.localScale.x / ProjectileManager._instance.ProjectileBaseScale.x);
-        targetType = TargetType.NONE;
         spawnExplosionOnReturn = true;
         ProjectileObjectPooling._instance.ReturnProjectile(this);
     }
 
-    public void ResetProperties()
+    public virtual void ResetProperties()
     {
         speed = accelerationPerSecond = displacementDegreePerSec = spiralDamping = 0f;
-        initVelocity = rotationPerSec = Vector3.zero;
+        initVelocity = rotationPerSec = direction = Vector3.zero;
+        timePassed = 0f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnDrawGizmos()
     {
-        if (targetType == TargetType.ENEMY && collision.CompareTag("Enemy"))
-        {
-            collision.GetComponent<EnemyBase>().OnProjectileHit(this);
-            spawnExplosionOnReturn = false;
-            ReturnToPool();
-        }
-        else if (targetType == TargetType.PLAYER && collision.CompareTag("Player"))
-        {
-            collision.GetComponent<PlayerBase>().OnProjectileHit(this);
-        }
+        if (!initialized) return;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, hitboxRadius);
     }
 }

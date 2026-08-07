@@ -36,6 +36,9 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected SpriteRenderer glowSprite;
     [SerializeField] protected Collider2D hitbox;
+
+    public Vector3 InitPos { get; private set; }
+
     protected virtual void Start() 
     { 
         if (!spriteRenderer) spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
@@ -44,6 +47,8 @@ public class EnemyBase : MonoBehaviour
         if (!glowSprite) glowSprite = transform.Find("GlowSprite").GetComponent<SpriteRenderer>();
 
         if (!hitbox) hitbox = GetComponent<Collider2D>();
+
+        InitPos = transform.position;
 
         InitializeArrays();
         GetSpellcardsData();

@@ -21,11 +21,13 @@ public class BossHealthBar : MonoBehaviour
     [SerializeField] GameObject LifeIndicatorPrefab;
 
     EnemyBase attached;
+    [SerializeField] Transform EnemyIndicator;
     public void AttachHUDToBoss(EnemyBase test)
     {
         SetHUDEmpty();
 
         attached = test;
+        EnemyIndicator.gameObject.SetActive(true);
         BossName.text = attached.getName;
 
         InitializeHealthBar();
@@ -108,7 +110,12 @@ public class BossHealthBar : MonoBehaviour
 
     private void Update()
     {
-        if (attached) UpdateHealthBar();
+        if (attached)
+        {
+            Vector3 bossPos = Camera.main.WorldToScreenPoint(attached.transform.position);
+            EnemyIndicator.position = new(bossPos.x, EnemyIndicator.position.y);
+            UpdateHealthBar();
+        }
         UpdateSpellTimer(SpellcardManager._instance.GetCurrentSpell());
     }
 
@@ -136,6 +143,7 @@ public class BossHealthBar : MonoBehaviour
 
     public void SetHUDEmpty()
     {
+        EnemyIndicator.gameObject.SetActive(false);
         SpellTimer.text = string.Empty;
         attached = null;
         SpellNameText.text = BossName.text = string.Empty;

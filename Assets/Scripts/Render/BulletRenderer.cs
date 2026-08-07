@@ -19,7 +19,6 @@ public class BulletRenderer : MonoBehaviour
         public float timePassed;
         public Quaternion rotation;
         public BulletType bulletType;
-        public DefaultProjectile.TargetType targetType;
         public bool active;
     }
 
@@ -55,7 +54,7 @@ public class BulletRenderer : MonoBehaviour
     }
 
     public void AddBullet(Vector3 position, Vector3 direction, float speed,
-        float acceleration, BulletType bulletType, DefaultProjectile.TargetType targetType)
+        float acceleration, BulletType bulletType)
     {
         bullets.Add(new BulletData
         {
@@ -66,7 +65,6 @@ public class BulletRenderer : MonoBehaviour
             timePassed = 0,
             rotation = Quaternion.identity,
             bulletType = bulletType,
-            targetType = targetType,
             active = true
         });
     }
@@ -102,7 +100,6 @@ public class BulletRenderer : MonoBehaviour
     {
         if (matrices.Count == 0) return;
 
-        // Render all bullets in one call
         Graphics.DrawMeshInstanced(bulletMesh, 0, bulletMaterial, matrices);
     }
 

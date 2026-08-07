@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class SaveDataManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static SaveDataManager _instance;
 
-    // Update is called once per frame
-    void Update()
+    StreamReader streamReader;
+
+    private void Awake()
     {
-        
+        _instance = this;
+        streamReader = new StreamReader("data.dat");
     }
 }

@@ -127,7 +127,7 @@ public class FairySpellcard_4 : SpellcardBase
         yield return new WaitForSeconds(0.15f);
 
         //ChargeEffect._instance.DoCircleEffect(stars[0].transform.position, GetColorBasedOnStar(stars[0].GetBulletType), 0.4f);
-        CreateMochi(stars[0].transform.position, stars[0].GetBulletType);
+        CreateMochi(stars[0].transform.position, stars[0].GetBulletTypeAsEnum);
         foreach (DefaultProjectile star in stars)
         {
             if (!star.gameObject.activeSelf) continue;
@@ -162,7 +162,7 @@ public class FairySpellcard_4 : SpellcardBase
     [SerializeField] float starExplodeAccelerationMin = 25f, starExplodeAccelerationMax = 100f;
     void CreateExplosionFromStar(DefaultProjectile fromStar, float initAngle)
     {
-        BulletData.BulletType bulletType = fromStar.GetBulletType;
+        BulletData.BulletType bulletType = fromStar.GetBulletTypeAsEnum;
         Vector3 position = fromStar.transform.position;
         fromStar.ReturnToPool();
 

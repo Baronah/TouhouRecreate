@@ -22,7 +22,7 @@ public class Youmu_A : PlayerBase
         for (int i = 0; i < shotDirections.Length; i++)
         {
             CreateProjectileAndShoot(
-                BulletData.BulletType.TRIANGLE_GREY,
+                BulletData.PlayerBulletType.RICE_GREY,
                 1f, 
                 500f, 
                 200f, 
@@ -48,14 +48,28 @@ public class Youmu_A : PlayerBase
 
         for (int i = 0; i < shotPositions.Length; i++)
         {
-            CreateProjectileAndShoot(
-                BulletData.BulletType.TRIANGLE_GREY,
-                1f,
-                500f,
-                200f,
-                Vector3.up,
-                transform.position + shotPositions[i]
-            );
+            if (shotPositions[i] == Vector3.zero)
+            {
+                CreateProjectileAndShoot(
+                    BulletData.PlayerBulletType.TWIN_SHOTS,
+                    2f,
+                    500f,
+                    200f,
+                    Vector3.up,
+                    transform.position + shotPositions[i]
+                );
+            }
+            else
+            {
+                CreateProjectileAndShoot(
+                    BulletData.PlayerBulletType.RICE_GREY,
+                    1f,
+                    500f,
+                    200f,
+                    Vector3.up,
+                    transform.position + shotPositions[i]
+                );
+            }
         }
     }
 

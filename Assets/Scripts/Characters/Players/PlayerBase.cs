@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Collider2D))]
+// [RequireComponent(typeof(Collider2D))]
 public abstract class PlayerBase : MonoBehaviour
 {
     private static readonly int MLeftHash = Animator.StringToHash("m_left");
@@ -22,6 +23,9 @@ public abstract class PlayerBase : MonoBehaviour
     }
 
     protected Rigidbody2D rb;
+    [SerializeField] protected float HitboxRadius = 0.3f;
+    public float GetHitboxRadius() => HitboxRadius * transform.localScale.x;
+
     [SerializeField] GameObject HitboxShow;
     [SerializeField] GameObject ExplosionSfx;
     [SerializeField] Transform ShootPosition;
@@ -196,12 +200,11 @@ public abstract class PlayerBase : MonoBehaviour
         Destroy(this.gameObject, 1f);
     }
 
-    public void CreateProjectileAndShoot(BulletData.BulletType bulletType, float baseDamage, float speed, float acceleration, Vector3 direction, Vector3? position = null)
+    public void CreateProjectileAndShoot(BulletData.PlayerBulletType bulletType, float baseDamage, float speed, float acceleration, Vector3 direction, Vector3? position = null)
     {
-        DefaultProjectile projectile = 
-            ProjectileManager._instance.CreateSimpleProjectile(
+        PlayerProjectile projectile = 
+            PlayerProjectileManager._instance.CreateSimpleProjectile(
                 bulletType, 
-                DefaultProjectile.TargetType.ENEMY, 
                 GetBulletFirepower(baseDamage), 
                 speed, 
                 position ?? ShootPosition.position
@@ -214,4 +217,9 @@ public abstract class PlayerBase : MonoBehaviour
         projectile.InitializeAndShoot();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, GetHitboxRadius());
+    }
 }

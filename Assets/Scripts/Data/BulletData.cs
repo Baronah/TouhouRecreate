@@ -3,13 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BulletData", menuName = "ScriptableObjects/BulletData", order = 1)]
 public class BulletData : ScriptableObject
 {
-    public static BulletData _instance;
-
-    private void Awake()
-    {
-        _instance = this;
-    }
-
     public enum BulletType
     {
         STAR_GREY = 0,
@@ -122,6 +115,21 @@ public class BulletData : ScriptableObject
         STANDARD_SHOOT_LIGHTGREEN = 380,
         STANDARD_SHOOT_LIGHTYELLOW = 381,
     }
+
+    public enum PlayerBulletType
+    {
+        TWIN_SHOTS,
+        SPIRIT_RED,
+        SPIRIT_BLUE,
+        RICE_RED,
+        RICE_ORANGE,
+        RICE_YELLOW,
+        RICE_GREEN,
+        RICE_CYAN,
+        RICE_BLUE,
+        RICE_MAGENTA,
+        RICE_GREY,
+    };
 
     public Sprite[] Bullets;
 }

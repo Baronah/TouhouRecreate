@@ -269,7 +269,6 @@ public abstract class SpellcardBase : MonoBehaviour
     {
         return ProjectileManager._instance.CreateSimpleProjectile(
                 bulletType,
-                DefaultProjectile.TargetType.PLAYER,
                 1f,
                 speed,
                 position,

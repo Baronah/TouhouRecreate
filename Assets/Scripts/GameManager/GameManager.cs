@@ -36,6 +36,17 @@ public class GameManager : MonoBehaviour
 
     public Vector3 CenterDown => (cornerLeftDown.position + cornerRightDown.position) / 2;
 
+    public bool hasShotOverbound(Vector3 shootPosition)
+    {
+        return
+            shootPosition.x < cornerLeftDown.position.x - 200f
+            ||
+            shootPosition.y < cornerLeftDown.position.y - 200f
+            ||
+            shootPosition.x > cornerRightUp.position.x + 200f
+            ||
+            shootPosition.y > cornerRightUp.position.y + 200f;
+    }
 
     public static LayerMask EnemyLayer = 8, PlayerLayer = 9, ProjectileEnemyLayer = 6, ProjectilePlayerLayer = 7;
 

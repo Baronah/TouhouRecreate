@@ -114,10 +114,10 @@ GameObject:
   - component: {fileID: 1193468512764747258}
   - component: {fileID: 5213722415790792795}
   - component: {fileID: 9109826331060441898}
-  - component: {fileID: 6974237902664736380}
   - component: {fileID: 6417568752686760008}
-  - component: {fileID: 8335164496969986657}
   - component: {fileID: 1774561010814294237}
+  - component: {fileID: 8335164496969986657}
+  - component: {fileID: 1152773464559452789}
   - component: {fileID: 7641604528105924212}
   m_Layer: 8
   m_Name: Spellcards
@@ -187,41 +187,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92964964998a6f74abbe15756286a155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 450
+  Health: 500
   SpellScore: 3200000
   SpellTime: 55
-  DamageIntakeRatio: 0.25
-  Name: Star sign "The Stars Descend"
+  DamageIntakeRatio: 0.17
+  Name: Star sign "Falling For You"
   PrepareTime: 0
   spellType: 1
   clearType: 0
   bulletsUse: 020000000400000001000000
   IsShooting: 0
   IsPrepared: 0
---- !u!114 &6974237902664736380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129786431520640199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f1a58290c3cbf4ab353443a7aba9f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 2000
-  SpellScore: 2500000
-  SpellTime: 60
-  DamageIntakeRatio: 2
-  Name: 
-  PrepareTime: 0.5
-  spellType: 0
-  clearType: 0
-  bulletsUse: 1e00000024000000
-  IsShooting: 0
-  IsPrepared: 0
-  interval: 1.8
 --- !u!114 &6417568752686760008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,19 +210,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3be43a61dd30d41b4576a6959283c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 350
+  Health: 1600
   SpellScore: 3000000
   SpellTime: 45
-  DamageIntakeRatio: 0.25
-  Name: '''Shioiri Nightfall"'
-  PrepareTime: 0
-  spellType: 1
+  DamageIntakeRatio: 1
+  Name: 
+  PrepareTime: 2
+  spellType: 0
   clearType: 0
   bulletsUse: 0000000001000000020000000300000004000000050000000600000007000000
   IsShooting: 0
   IsPrepared: 0
   projectileCount: 70
   shootInterval: 0.165
+--- !u!114 &1774561010814294237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129786431520640199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb2bbe0bfd8fc94dbb130594559683b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 500
+  SpellScore: 5000000
+  SpellTime: 60
+  DamageIntakeRatio: 0.27
+  Name: '"A Starry Night, the City of Light"'
+  PrepareTime: 1.2
+  spellType: 1
+  clearType: 0
+  bulletsUse: 01000000040000000500000006000000
+  IsShooting: 0
+  IsPrepared: 0
+  ShootInterval: 4
 --- !u!114 &8335164496969986657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   intervalBlue: 0.2
   Speed: 350
   Acceleration: 0
---- !u!114 &1774561010814294237
+--- !u!114 &1152773464559452789
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,21 +284,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1129786431520640199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb2bbe0bfd8fc94dbb130594559683b, type: 3}
+  m_Script: {fileID: 11500000, guid: fb9e4187258c4c241983716e6bfd8289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 500
-  SpellScore: 5000000
-  SpellTime: 60
-  DamageIntakeRatio: 0.25
-  Name: '"A Starry Night, the City of Light"'
-  PrepareTime: 1.2
+  SpellScore: 6500000
+  SpellTime: 70
+  DamageIntakeRatio: 0.33
+  Name: '"Shioiri Nightfall"'
+  PrepareTime: 1.5
   spellType: 1
   clearType: 0
-  bulletsUse: 01000000040000000500000006000000
+  bulletsUse: 01000000060000000300000005000000
   IsShooting: 0
   IsPrepared: 0
-  ShootInterval: 4
+  interval: 2.5
+  maxMvmtWidth: 300
+  maxMvmtHeight: 150
+  speed: 60
+  initStarSpeed: 350
+  initStarAccele: -500
+  smallStarSpeed: 270
+  smallStarAccele: -450
 --- !u!114 &7641604528105924212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,9 +320,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 1
   SpellScore: 7500000
-  SpellTime: 60
+  SpellTime: 62
   DamageIntakeRatio: 0
-  Name: '"Supernova"'
+  Name: '"Champagne Supernova"'
   PrepareTime: 1.5
   spellType: 1
   clearType: 1
@@ -812,6 +819,7 @@ GameObject:
   - component: {fileID: 558632027689159469}
   - component: {fileID: 8330292754293291618}
   - component: {fileID: 5489251542525251450}
+  - component: {fileID: 1982767809250036163}
   m_Layer: 8
   m_Name: MrTums
   m_TagString: Enemy
@@ -907,6 +915,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.515572, y: 10.96006}
   m_EdgeRadius: 0
+--- !u!50 &1982767809250036163
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5915037995982736960}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6401464517090426798
 GameObject:
   m_ObjectHideFlags: 0

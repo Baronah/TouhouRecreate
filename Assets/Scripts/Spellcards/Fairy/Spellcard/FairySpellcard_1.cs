@@ -13,8 +13,8 @@ public class FairySpellcard_1 : SpellcardBase
     protected override IEnumerator AttackShoot()
     {
         SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
-        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.25f);
-        yield return new WaitForSeconds(1.4f);
+        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.magenta, 1.25f);
+        yield return new WaitForSeconds(1.6f);
         StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -90f, SpeedExhaustType.STAY_STILL, false));
         StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -115f, SpeedExhaustType.STAY_STILL, false));
         StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -160f, SpeedExhaustType.STAY_STILL, false));

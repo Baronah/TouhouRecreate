@@ -19,7 +19,8 @@ public class FairySpellcard_3 : SpellcardBase
     protected override IEnumerator AttackShoot()
     {
         yield return new WaitForSeconds(0.25f);
-        yield return StartCoroutine(MoveToCenter());
+        yield return StartCoroutine(MoveTo(GameManager._instance.CenterScreen));
+        yield return new WaitForSeconds(0.5f);
 
         ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.4f);
         SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
@@ -67,12 +68,12 @@ public class FairySpellcard_3 : SpellcardBase
         }
     }
 
-    IEnumerator MoveToCenter()
+    IEnumerator MoveTo(Vector3 pos)
     {
-        Vector3 center = GameManager._instance.CenterScreen;
+        Vector3 center = pos;
         Vector3 init = spellOwner.transform.position;
 
-        float c = 0, duration = 1f;
+        float c = 0, duration = 0.7f;
         spellOwner.MakeInvulnerable(duration);
         while (c < duration)
         {
@@ -120,7 +121,7 @@ public class FairySpellcard_3 : SpellcardBase
         if (!toShoot.gameObject.activeSelf) return;
 
         Vector3 spawnPos = toShoot.transform.position;
-        BulletData.BulletType type = toShoot.GetBulletType;
+        BulletData.BulletType type = toShoot.GetBulletTypeAsEnum;
 
         toShoot.ReturnToPool();
 
@@ -170,5 +171,11 @@ public class FairySpellcard_3 : SpellcardBase
         star.InitializeAndShoot();
         
         return star;
+    }
+
+    public override void OnAttackFinish()
+    {
+        base.OnAttackFinish();
+        StartCoroutine(MoveTo(spellOwner.InitPos));
     }
 }

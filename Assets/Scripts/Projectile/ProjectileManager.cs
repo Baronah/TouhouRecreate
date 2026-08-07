@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static BulletData;
@@ -19,14 +20,34 @@ public class ProjectileManager : MonoBehaviour
 
     HashSet<DefaultProjectile> ActiveProjectiles = new();
 
+    [SerializeField] TMP_Text BulletCountTxt;
+    private void Update()
+    {
+        if (BulletCountTxt) BulletCountTxt.text = string.Format("{0:N0}", ActiveProjectiles.Count);
+    }
+
+    List<DefaultProjectile> ClearCaches = new();
+    private void FixedUpdate()
+    {
+        ClearCaches.Clear();
+        foreach (DefaultProjectile projectile in ActiveProjectiles)
+        {
+            projectile.UpdateEverything();
+        }
+
+        for (int i = 0; i < ClearCaches.Count; i++) ClearCaches[i].ReturnToPool();
+    }
+
+    public void CachedForPoolReturning(DefaultProjectile projectile) => ClearCaches.Add(projectile);
+
     public List<DefaultProjectile> GetProjectilesOfType(BulletType bulletType)
     {
-        return ActiveProjectiles.Where(p => p.gameObject.activeSelf && p.GetBulletType == bulletType).ToList();
+        return ActiveProjectiles.Where(p => p.gameObject.activeSelf && p.GetBulletTypeAsEnum == bulletType).ToList();
     }
 
     public List<DefaultProjectile> GetProjectilesOfType(BulletType[] bulletTypes)
     {
-        return ActiveProjectiles.Where(p => p.gameObject.activeSelf && bulletTypes.Contains(p.GetBulletType)).ToList();
+        return ActiveProjectiles.Where(p => p.gameObject.activeSelf && bulletTypes.Contains(p.GetBulletTypeAsEnum)).ToList();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,7 +80,7 @@ public class ProjectileManager : MonoBehaviour
         if (bulletTypes.Length <= 0) return;
 
         DefaultProjectile[] ToClear =
-            ActiveProjectiles.Where(p => bulletTypes.Contains(p.GetBulletType)).ToArray();
+            ActiveProjectiles.Where(p => bulletTypes.Contains(p.GetBulletTypeAsEnum)).ToArray();
 
         int count = ToClear.Length;
         for (int i = 0; i < count; ++i)
@@ -91,7 +112,7 @@ public class ProjectileManager : MonoBehaviour
 
     public void ChangeBulletTypeOfCurrentProjectile(DefaultProjectile currentProjectile, BulletData.BulletType newBulletType)
     {
-        currentProjectile.SetBulletType(newBulletType);
+        currentProjectile.SetBulletType((int) newBulletType);
         SetSpriteAndHitboxSizeOfProjectileByBulletType(newBulletType, currentProjectile, 0, false);
     }
 
@@ -102,28 +123,25 @@ public class ProjectileManager : MonoBehaviour
         renderer.sprite = bulletScriptable.Bullets[(int)bulletType];
         if (changeSortingOrder) renderer.sortingOrder = SortingOrder;
 
-        CircleCollider2D collider = projectile.GetComponent<CircleCollider2D>();
-        collider.radius = renderer.sprite.bounds.extents.magnitude / 5;
+        projectile.hitboxRadius = renderer.sprite.bounds.extents.magnitude * projectile.transform.localScale.x / 3.8f;
     }
 
     public Vector3 ProjectileBaseScale => ProjectileObjectPooling._instance.ProjectileBaseScale;
-    public DefaultProjectile CreateSimpleProjectile(BulletData.BulletType bulletType, DefaultProjectile.TargetType targetType, float strength, float speed, Vector3 position, float scale = 1.0f)
+    public DefaultProjectile CreateSimpleProjectile(BulletData.BulletType bulletType, float strength, float speed, Vector3 position, float scale = 1.0f)
     {
         GameObject projectile = ProjectileObjectPooling._instance.GetProjectile(bulletType, position, scale);
-        if (targetType == TargetType.ENEMY) projectile.layer = GameManager.ProjectileEnemyLayer;
-        else projectile.layer = GameManager.ProjectilePlayerLayer;
 
         DefaultProjectile defaultProjectile = projectile.GetComponent<DefaultProjectile>();
-        defaultProjectile.SetProperties(bulletType, targetType, strength, speed);
+        defaultProjectile.SetProperties((int) bulletType, strength, speed);
 
         return defaultProjectile;
     }
 
-    public DefaultProjectile CreateHomingProjectile(BulletData.BulletType bulletType, DefaultProjectile.TargetType targetType, float strength, float speed, Transform target, Vector3 position)
+    public DefaultProjectile CreateHomingProjectile(BulletData.BulletType bulletType, float strength, float speed, Transform target, Vector3 position)
     {
         if (!target) return null;
         Vector3 direction = (target.position - position).normalized;
-        DefaultProjectile projectile = CreateSimpleProjectile(bulletType, targetType, strength, speed, position);
+        DefaultProjectile projectile = CreateSimpleProjectile(bulletType, strength, speed, position);
         projectile.SetDirection(direction);
         return projectile;
     }
