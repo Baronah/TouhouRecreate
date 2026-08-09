@@ -191,7 +191,7 @@ MonoBehaviour:
   SpellScore: 3200000
   SpellTime: 55
   DamageIntakeRatio: 0.17
-  Name: Star sign "Falling For You"
+  Name: Star sign "Red Dwarfs"
   PrepareTime: 0
   spellType: 1
   clearType: 0
@@ -218,11 +218,11 @@ MonoBehaviour:
   PrepareTime: 2
   spellType: 0
   clearType: 0
-  bulletsUse: 0000000001000000020000000300000004000000050000000600000007000000
+  bulletsUse: 3a0000003c000000
   IsShooting: 0
   IsPrepared: 0
-  projectileCount: 70
-  shootInterval: 0.165
+  projectileCount: 75
+  shootInterval: 0.16
 --- !u!114 &1774561010814294237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   Health: 500
   SpellScore: 6500000
   SpellTime: 70
-  DamageIntakeRatio: 0.33
+  DamageIntakeRatio: 0.35
   Name: '"Shioiri Nightfall"'
   PrepareTime: 1.5
   spellType: 1

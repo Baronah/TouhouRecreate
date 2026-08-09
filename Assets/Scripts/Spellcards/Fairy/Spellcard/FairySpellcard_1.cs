@@ -7,19 +7,19 @@ using static BulletData;
 using static DefaultProjectile;
 using Random = UnityEngine.Random;
 
-// Star sign "The Stars Descend" (星降る夜の星座)
+// Star sign "Falling for You"
 public class FairySpellcard_1 : SpellcardBase
 {
     protected override IEnumerator AttackShoot()
     {
         SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
-        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.magenta, 1.25f);
-        yield return new WaitForSeconds(1.6f);
-        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -90f, SpeedExhaustType.STAY_STILL, false));
-        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -115f, SpeedExhaustType.STAY_STILL, false));
-        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -160f, SpeedExhaustType.STAY_STILL, false));
-        StartCoroutine(BoWaP(2f, bulletsUse[0], 250f, -240f, SpeedExhaustType.STAY_STILL, false));
-        yield return new WaitForSeconds(3.5f);
+        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.25f);
+        yield return new WaitForSeconds(1.75f);
+        StartCoroutine(BoWaP(3f, bulletsUse[0], 250f, -90f, SpeedExhaustType.STAY_STILL, false));
+        StartCoroutine(BoWaP(3f, bulletsUse[0], 250f, -115f, SpeedExhaustType.STAY_STILL, false));
+        StartCoroutine(BoWaP(3f, bulletsUse[0], 250f, -160f, SpeedExhaustType.STAY_STILL, false));
+        StartCoroutine(BoWaP(3f, bulletsUse[0], 250f, -240f, SpeedExhaustType.STAY_STILL, false));
+        yield return new WaitForSeconds(4.5f);
 
         bool reversed = false;
         while (true)
@@ -55,13 +55,12 @@ public class FairySpellcard_1 : SpellcardBase
             for (int i = 0; i < 360; i += 6)
             {
                 SoundManager._instance.PlaySound(SfxData.SFXType.SHOOT_1);
-                CreateWaveShots(i + initialAngle + loopcount * 2, bulletType, speed, acceleration, exhaustType, reversed);
+                CreateWaveShots(i + initialAngle + loopcount * 1.5f, bulletType, speed, acceleration, exhaustType, reversed);
                 countUp += 0.05f;
                 yield return _waitForSeconds0_05;
 
                 if (countUp >= duration) yield break;
             }
-
             loopcount++;
         }
     }

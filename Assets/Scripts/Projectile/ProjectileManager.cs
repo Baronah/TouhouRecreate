@@ -118,12 +118,17 @@ public class ProjectileManager : MonoBehaviour
 
     void SetSpriteAndHitboxSizeOfProjectileByBulletType(BulletData.BulletType bulletType, DefaultProjectile projectile, short SortingOrder, bool changeSortingOrder = true)
     {
-        SpriteRenderer renderer = projectile.GetComponent<SpriteRenderer>();
+        SpriteRenderer renderer = projectile.GetSpriteRenderer();
         renderer.color = Color.white;
         renderer.sprite = bulletScriptable.Bullets[(int)bulletType];
         if (changeSortingOrder) renderer.sortingOrder = SortingOrder;
 
-        projectile.hitboxRadius = renderer.sprite.bounds.extents.magnitude * projectile.transform.localScale.x / 3.8f;
+        CalculateHitboxSize(projectile);
+    }
+
+    public void CalculateHitboxSize(DefaultProjectile projectile)
+    {
+        projectile.hitboxRadius = projectile.GetSpriteRenderer().sprite.bounds.extents.magnitude * projectile.transform.localScale.x / 3.8f;
     }
 
     public Vector3 ProjectileBaseScale => ProjectileObjectPooling._instance.ProjectileBaseScale;

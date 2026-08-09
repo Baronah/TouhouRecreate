@@ -22,7 +22,15 @@ public class DefaultProjectile : MonoBehaviour
     public int GetBulletType => bulletType;
     public BulletType GetBulletTypeAsEnum => (BulletType)bulletType;
 
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        if (!spriteRenderer)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        return spriteRenderer;
+    }
 
     public Vector3 direction { get; protected set; }
     public float speed;
@@ -39,7 +47,7 @@ public class DefaultProjectile : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        if (!spriteRenderer) spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     public bool initialized = false;
@@ -89,7 +97,7 @@ public class DefaultProjectile : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        spriteRenderer.color = color;
+        GetSpriteRenderer().color = color;
     }
 
     public virtual void Stop()
@@ -108,6 +116,7 @@ public class DefaultProjectile : MonoBehaviour
     public void SetScale(float scale)
     {
         transform.localScale = ProjectileManager._instance.ProjectileBaseScale * scale;
+        ProjectileManager._instance.CalculateHitboxSize(this);
     }
 
     float spiralDamping = 0.5f;
@@ -175,11 +184,20 @@ public class DefaultProjectile : MonoBehaviour
         }
     }
 
+    bool playerGrazed = false;
     public virtual void CheckForCollision()
     {
+        float distToPlayer = Vector3.SqrMagnitude(transform.position - PlayerManager._instance.PlayerPosition);
         // collision check against player — just distance
-        if (Vector3.SqrMagnitude(transform.position - PlayerManager._instance.PlayerPosition) < (hitboxRadius + PlayerManager._instance.GetPlayerHitboxRaidus()))
+        if (distToPlayer < (hitboxRadius + PlayerManager._instance.GetPlayerHitboxRaidus()))
+        {
             PlayerManager._instance.ActivePlayer.OnProjectileHit(this);
+        }
+        else if (!playerGrazed && distToPlayer < (hitboxRadius + PlayerManager._instance.GetPlayerGrazeRaidus()))
+        {
+            playerGrazed = true;
+            PlayerManager._instance.OnPlayerGraze();
+        }
     }
 
     protected virtual void UpdateRotation()
@@ -208,6 +226,7 @@ public class DefaultProjectile : MonoBehaviour
 
     public virtual void ResetProperties()
     {
+        playerGrazed = false;
         speed = accelerationPerSecond = displacementDegreePerSec = spiralDamping = 0f;
         initVelocity = rotationPerSec = direction = Vector3.zero;
         timePassed = 0f;

@@ -27,6 +27,11 @@ public class PlayerProjectile : DefaultProjectile
         UpdateVelocity();
     }
 
+    public override void CheckForCollision()
+    {
+        
+    }
+
     protected void UpdateVelocity()
     {
         if (!rb2d) rb2d.velocity = direction.normalized * speed;

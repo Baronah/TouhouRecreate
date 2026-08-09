@@ -23,8 +23,9 @@ public abstract class PlayerBase : MonoBehaviour
     }
 
     protected Rigidbody2D rb;
-    [SerializeField] protected float HitboxRadius = 0.3f;
+    [SerializeField] protected float HitboxRadius = 0.3f, GrazeRadius = 1f;
     public float GetHitboxRadius() => HitboxRadius * transform.localScale.x;
+    public float GetGrazeRaidus() => GrazeRadius * transform.localScale.x;
 
     [SerializeField] GameObject HitboxShow;
     [SerializeField] GameObject ExplosionSfx;

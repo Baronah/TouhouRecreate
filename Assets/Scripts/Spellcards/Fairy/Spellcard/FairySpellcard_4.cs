@@ -237,6 +237,7 @@ public class FairySpellcard_4 : SpellcardBase
         }
 
         defaultProjectile.transform.localScale = finalScale;
+        ProjectileManager._instance.CalculateHitboxSize(defaultProjectile);
         yield return new WaitForSeconds(1.5f);
 
         c = 0;

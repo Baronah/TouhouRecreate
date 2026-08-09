@@ -431,7 +431,8 @@ MonoBehaviour:
   moveSpeed: 180
   focusSpeed: 80
   firepower: 4
-  HitboxRadius: 0.6
+  HitboxRadius: 1
+  GrazeRadius: 30
   HitboxShow: {fileID: 3781785089074946589}
   ExplosionSfx: {fileID: 8918037335482007505, guid: 1a4bcb7e742f88b4abd13911fe0654e1, type: 3}
   ShootPosition: {fileID: 6877688533367426818}

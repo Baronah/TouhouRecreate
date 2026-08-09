@@ -14,15 +14,21 @@ public class FairySpellcard_5 : SpellcardBase
     {
         rb2d = spellOwner.GetComponent<Rigidbody2D>();
         yield return StartCoroutine(MoveToTarget(spellOwner.InitPos + new Vector3(0, -100)));
+        yield return new WaitForSeconds(0.5f);
+
+        ChargeEffect._instance.DoChargeEffect(spellOwner.transform.position, Color.white, 1.25f);
+        SoundManager._instance.PlaySound(SfxData.SFXType.CHARGE_2, SoundManager.SfxChannel.EFFECT);
+        yield return new WaitForSeconds(1.4f);
+
         StartCoroutine(CreateEverExpandingStar());
-        yield return new WaitForSeconds(interval + 1f);
+        yield return new WaitForSeconds(0.5f);
 
         StartCoroutine(RandomizeMovement());
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(interval + 1f);
         while (true)
         {
-            yield return new WaitForSeconds(interval);
             StartCoroutine(CreateEverExpandingStar());
+            yield return new WaitForSeconds(interval);
         }
     }
 
@@ -48,10 +54,10 @@ public class FairySpellcard_5 : SpellcardBase
             loopCount++;
             List<DefaultProjectile> smallStars = new();
             SoundManager._instance.PlaySound(SfxData.SFXType.ENEMY_VANISH, SoundManager.SfxChannel.TRANSFORM, 0.5f);
+            float InitAngle = Random.Range(0, 360);
             for (int i = 0; i < CreatedStars.Count; i++)
             {
                 Vector3 pos = CreatedStars[i].transform.position;
-                float InitAngle = Random.Range(0, 360);
                 for (int j = 0; j < 360; j += 360 / 5)
                 {
                     float angle = (InitAngle + j) * Mathf.Deg2Rad;

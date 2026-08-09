@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -86,7 +87,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] GameObject PlayerPrefab;
     private PlayerBase Player;
     public PlayerBase ActivePlayer => Player;
-    public float GetPlayerHitboxRaidus() => Player ? Player.GetHitboxRadius() : 0f;
+    public float GetPlayerHitboxRaidus() => Player ? Player.GetHitboxRadius() : -1f;
+    public float GetPlayerGrazeRaidus() => Player ? Player.GetGrazeRaidus() : -1f;
     public Vector3 PlayerPosition => ActivePlayer ? ActivePlayer.transform.position : GameManager._instance.CenterDown;
 
     public Vector3 GetPlayerRespawnPosition()
@@ -118,6 +120,16 @@ public class PlayerManager : MonoBehaviour
             DrawUI();
             StartCoroutine(SpawnPlayer());
         }
+    }
+
+    [SerializeField] TMP_Text GrazeCountTxt;
+    int GrazeCount = 0;
+    public void OnPlayerGraze()
+    {
+        SoundManager._instance.PlaySound(SfxData.SFXType.PLAYER_GRAZE, SoundManager.SfxChannel.PLAYER_SFX, 0.65f);
+        GameManager._instance.AddScore(125);
+        GrazeCount++;
+        GrazeCountTxt.text = GrazeCount.ToString();
     }
 
     IEnumerator SpawnPlayer()

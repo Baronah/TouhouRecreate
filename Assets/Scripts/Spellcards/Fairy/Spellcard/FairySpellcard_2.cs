@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-// "When You Wish upon the Stars"
 public class FairySpellcard_2 : SpellcardBase
 {
     [SerializeField] int projectileCount = 80;
@@ -44,16 +43,6 @@ public class FairySpellcard_2 : SpellcardBase
         }
     }
 
-    BulletData.BulletType[] AllStarsBullets = new BulletData.BulletType[]
-    {
-        BulletData.BulletType.STAR_RED,
-        BulletData.BulletType.STAR_CYAN,
-        BulletData.BulletType.STAR_GREEN,
-        BulletData.BulletType.STAR_MAGENTA,
-        BulletData.BulletType.STAR_BLUE,
-        BulletData.BulletType.STAR_ORANGE
-    };
-
     Vector3 fallingRotateVector = new(0, 0, 180f);
     Vector3 risingRotateVector = new(0, 0, -60f);
 
@@ -61,9 +50,9 @@ public class FairySpellcard_2 : SpellcardBase
     {
         SoundManager._instance.PlaySound(SfxData.SFXType.REVERSE, SoundManager.SfxChannel.TRANSFORM);
 
-        ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(projectile, BulletData.BulletType.STAR_GREY);
+        ProjectileManager._instance.ChangeBulletTypeOfCurrentProjectile(projectile, bulletsUse[1]);
+        projectile.SetScale(1.4f);
         projectile.SetSpeed(5f);
-        projectile.SetRotation(risingRotateVector);
         projectile.SetAcceleration(30);
         projectile.SetDirection(Vector3.up);
         projectile.InitializeAndShoot();
@@ -72,13 +61,12 @@ public class FairySpellcard_2 : SpellcardBase
     void CreateFallingProjectileAndTrack(Vector3 initPos)
     {
         DefaultProjectile defaultProjectile = CreateSimpleProjectile(
-                AllStarsBullets[Random.Range(0, AllStarsBullets.Length)],
+                bulletsUse[0],
                 Random.Range(30, 200),
                 initPos,
-                scale: 0.85f
+                scale: 1.25f
             );
 
-        defaultProjectile.SetRotation(fallingRotateVector);
         defaultProjectile.SetAcceleration(Random.Range(50, 150));
         defaultProjectile.SetDirection(Vector3.down);
         defaultProjectile.InitializeAndShoot();

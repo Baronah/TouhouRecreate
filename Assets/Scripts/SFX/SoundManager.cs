@@ -35,15 +35,17 @@ public class SoundManager : MonoBehaviour
         EFFECT = 2,
         PLAYER = 3,
         PLAYER_DEATH = 4,
+        PLAYER_SFX,
     }
 
-    public float[] ChannelVolume = new float[]
+    private float[] ChannelVolume = new float[]
     {
         0.65f,
         0.7f,
         1,
         0.67f,
         0.6f,
+        1F,
     };
 
     private float[] Cooldowns = new float[]
@@ -53,6 +55,7 @@ public class SoundManager : MonoBehaviour
         0,
         0,
         0,
+        0, 
     };
 
     [SerializeField] float defaultCooldown = 1f;
